@@ -1,12 +1,11 @@
 import { Invoice } from '../interfaces/invoice';
+import { InvoiceState } from './invoices/invoice.state';
 
 export interface AppState {
-  invoices: Invoice[];
-  filters: {
-    paid: boolean;
-    pending: boolean;
-    draft: boolean;
-  };
-  error: null;
-  loading: false;
+  invoice: InvoiceState;
+  theme: ThemeState;
+}
+
+export interface ThemeState {
+  mode: 'light' | 'dark';
 }

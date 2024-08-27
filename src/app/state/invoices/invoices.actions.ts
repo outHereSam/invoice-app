@@ -22,3 +22,7 @@ export const deleteInvoice = createAction(
   '[Invoice] Delete Invoice',
   props<{ id: string }>()
 );
+export const updateFilters = createAction(
+  '[Invoice] Update Filters',
+  props<{ filters: { paid: boolean; pending: boolean; draft: boolean } }>()
+);
