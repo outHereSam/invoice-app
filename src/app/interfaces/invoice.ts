@@ -1,8 +1,8 @@
 interface Address {
-  street: string;
-  city: string;
-  postCode: string;
-  country: string;
+  street?: string;
+  city?: string;
+  postCode?: string;
+  country?: string;
 }
 
 interface Item {
@@ -19,8 +19,8 @@ export interface Invoice {
   description: string;
   paymentTerms: number;
   clientName: string;
-  clientEmail: string;
-  status: string;
+  clientEmail?: string;
+  status: 'paid' | 'pending' | 'draft';
   senderAddress: Address;
   clientAddress: Address;
   items: Item[];
