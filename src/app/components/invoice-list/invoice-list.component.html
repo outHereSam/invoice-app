@@ -1,0 +1,11 @@
+@if(loading$ | async) {
+<div>Loading...</div>
+} @if (error$ | async) {
+<div>{{ error$ }}</div>
+} @if (!(loading$ | async) && !(error$ | async)) {
+<ul>
+  @for (invoice of filteredInvoices$ | async; track invoice.id) {
+  <li>{{ invoice.id }} - {{ invoice.clientName }}</li>
+  }
+</ul>
+}

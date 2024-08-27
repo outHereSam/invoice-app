@@ -2,15 +2,21 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { provideStore } from '@ngrx/store';
+import { provideState, provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient } from '@angular/common/http';
+import { invoiceReducer } from './state/invoices/invoices.reducer';
+import { InvoiceEffects } from './state/invoices/invoices.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideStore(),
-    provideEffects(),
+    provideEffects(InvoiceEffects),
+    provideState({
+      name: 'invoices',
+      reducer: invoiceReducer,
+    }),
     provideHttpClient(),
   ],
 };

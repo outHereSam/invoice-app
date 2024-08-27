@@ -2,7 +2,7 @@ import { createSelector, createFeatureSelector } from '@ngrx/store';
 import { InvoiceState, invoiceAdapter } from './invoice.state';
 
 export const selectInvoiceState =
-  createFeatureSelector<InvoiceState>('invoice');
+  createFeatureSelector<InvoiceState>('invoices');
 
 // Selectors for invoice
 export const {
@@ -33,4 +33,15 @@ export const selectFilteredInvoices = createSelector(
         (filters.draft && invoice.status === 'draft')
     );
   }
+);
+
+// Select invoice loading
+export const selectInvoiceLoading = createSelector(
+  selectInvoiceState,
+  (state: InvoiceState) => state.loading
+);
+
+export const selectInvoiceError = createSelector(
+  selectInvoiceState,
+  (state: InvoiceState) => state.error
 );

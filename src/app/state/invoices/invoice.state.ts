@@ -1,4 +1,4 @@
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { EntityAdapter, EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Invoice } from '../../interfaces/invoice';
 
 export interface InvoiceState extends EntityState<Invoice> {
@@ -8,14 +8,15 @@ export interface InvoiceState extends EntityState<Invoice> {
     pending: boolean;
     draft: boolean;
   };
-  error: null;
-  loading: false;
+  error: string | null;
+  loading: boolean;
 }
 
-export const invoiceAdapter = createEntityAdapter<Invoice>({
-  selectId: (invoice: Invoice) => invoice.id,
-  sortComparer: false,
-});
+export const invoiceAdapter: EntityAdapter<Invoice> =
+  createEntityAdapter<Invoice>({
+    selectId: (invoice: Invoice) => invoice.id,
+    sortComparer: false,
+  });
 
 export const initialInvoiceState: InvoiceState = invoiceAdapter.getInitialState(
   {
