@@ -4,9 +4,21 @@ import { Invoice } from '../../interfaces/invoice';
 export const loadInvoices = createAction('[Invoice] Load Invoices');
 export const loadInvoicesSuccess = createAction(
   '[Invoice] Load Invoices Success',
-  props<{ error: string }>()
+  props<{ invoices: Invoice[] }>()
 );
 export const loadInvoicesFailure = createAction(
   '[Invoice] Load Invoices Failure',
   props<{ error: string }>()
+);
+export const addInvoice = createAction(
+  '[Invoice] Add Invoice',
+  props<{ invoice: Invoice }>()
+);
+export const updateInvoice = createAction(
+  '[Invoice] Update Invoice',
+  props<{ invoice: Partial<Invoice> & { id: string } }>()
+);
+export const deleteInvoice = createAction(
+  '[Invoice] Delete Invoice',
+  props<{ id: string }>()
 );
