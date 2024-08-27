@@ -9,6 +9,7 @@ import {
 } from '../../state/invoices/invoices.selectors';
 import { loadInvoices } from '../../state/invoices/invoices.actions';
 import { AsyncPipe } from '@angular/common';
+import { AppState } from '../../state/app.state';
 
 @Component({
   selector: 'app-invoice-list',
@@ -22,10 +23,12 @@ export class InvoiceListComponent {
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store<AppState>) {
     this.filteredInvoices$ = this.store.select(selectFilteredInvoices);
     this.loading$ = this.store.select(selectInvoiceLoading);
     this.error$ = this.store.select(selectInvoiceError);
+
+    this.filteredInvoices$.subscribe((invoices) => console.log(invoices));
   }
 
   ngOnInit() {
