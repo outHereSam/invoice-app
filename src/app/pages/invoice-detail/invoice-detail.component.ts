@@ -2,14 +2,50 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import { selectInvoiceById } from '../../state/invoices/invoices.selectors';
+import { Observable, switchMap } from 'rxjs';
+import { Invoice } from '../../interfaces/invoice';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
+import {
+  deleteInvoice,
+  updateInvoice,
+} from '../../state/invoices/invoices.actions';
 
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.sass',
 })
 export class InvoiceDetailComponent {
-  constructor(private store: Store<AppState>) {}
+  invoice$: Observable<Invoice | undefined>;
+
+  constructor(
+    private store: Store<AppState>,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.invoice$ = this.route.paramMap.pipe(
+      switchMap((params) => {
+        const invoiceId = params.get('invoiceId');
+        return this.store.select(selectInvoiceById(invoiceId || ''));
+      })
+    );
+  }
+
+  markAsPaid(id: string) {
+    this.store.dispatch(updateInvoice({ invoice: { id: id, status: 'paid' } }));
+  }
+
+  markAsPending(id: string) {
+    this.store.dispatch(
+      updateInvoice({ invoice: { id: id, status: 'pending' } })
+    );
+  }
+
+  deleteInvoice(id: string) {
+    this.store.dispatch(deleteInvoice({ id }));
+    this.router.navigate(['']);
+  }
 }

@@ -1,3 +1,29 @@
 <div class="home-container">
+  filter:
+  <label for="paid">
+    Paid
+    <input
+      type="checkbox"
+      name="paid"
+      (change)="updateFilter('paid', $event)"
+    />
+  </label>
+  <label for="pending">
+    Pending
+    <input
+      type="checkbox"
+      name="pending"
+      (change)="updateFilter('pending', $event)"
+    />
+  </label>
+  <label for="draft">
+    Draft
+    <input
+      type="checkbox"
+      name="draft"
+      (change)="updateFilter('draft', $event)"
+    />
+  </label>
+
   <app-invoice-list />
 </div>

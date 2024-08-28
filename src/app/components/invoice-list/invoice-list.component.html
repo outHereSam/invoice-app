@@ -5,7 +5,12 @@
 } @if (!(loading$ | async) && !(error$ | async)) {
 <ul>
   @for (invoice of filteredInvoices$ | async; track invoice.id) {
-  <li>{{ invoice.id }} - {{ invoice.clientName }} - {{ invoice.status }}</li>
+
+  <li>
+    <a [routerLink]="['/invoice-detail', invoice.id]"
+      >{{ invoice.id }} - {{ invoice.clientName }} - {{ invoice.status }}</a
+    >
+  </li>
   }
 </ul>
 }
