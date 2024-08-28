@@ -4,7 +4,11 @@
     background-color: $clr-gray-400
     display: flex
     justify-content: space-between
+    width: 100%
     height: 72px
+    position: fixed
+    top: 0
+    left: 0
 
     .logo
         width: 72px
@@ -12,6 +16,25 @@
         display: flex
         justify-content: center
         align-items: center
+        position: relative
+        background-color: $clr-purple-accent
+        border-top-right-radius: 20px
+        border-bottom-right-radius: 20px
+
+        img
+            position: absolute
+            z-index: 10
+
+        .overlap
+            display: block
+            width: 100%
+            height: 50%
+            background-color: $clr-purple-light
+            position: absolute
+            bottom: 0
+            left: 0
+            border-top-left-radius: 20px
+            border-bottom-right-radius: 20px
 
     .controls
         // border: solid 1px pink
@@ -22,9 +45,6 @@
             display: flex
             justify-content: center
             align-items: center
-
-        .theme-switcher
-            
 
             .light-mode
                 display: none
@@ -42,3 +62,34 @@
                 border-radius: 50%
 
             
+@media only screen and (min-width: 1024px)
+    .panel
+        flex-direction: column
+        width: 100px
+        height: 100%
+        border-top-right-radius: 20px
+        border-bottom-right-radius: 20px
+
+        .logo
+            width: 100px
+            height: 100px
+            border-top-right-radius: 20px
+            border-bottom-right-radius: 20px
+            
+
+            img
+                width: 40px
+                height: 40px
+
+        .controls
+            flex-direction: column
+
+            div 
+                width: 100%
+                height: 80px
+
+            .avatar 
+                border-top: solid 1px $clr-gray-200
+                img
+                    width: 40px
+                    height: 40px
