@@ -1,0 +1,44 @@
+@import '../../../styles'
+
+.panel
+    background-color: $clr-gray-400
+    display: flex
+    justify-content: space-between
+    height: 72px
+
+    .logo
+        width: 72px
+        height: 72px
+        display: flex
+        justify-content: center
+        align-items: center
+
+    .controls
+        // border: solid 1px pink
+        display: flex
+
+        div
+            width: 80px
+            display: flex
+            justify-content: center
+            align-items: center
+
+        .theme-switcher
+            
+
+            .light-mode
+                display: none
+
+            button 
+                background: none
+                border: none
+                cursor: pointer
+
+        .avatar
+            border-left: solid 1px $clr-gray-200
+            img 
+                width: 32px
+                height: 32px
+                border-radius: 50%
+
+            
