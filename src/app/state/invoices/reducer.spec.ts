@@ -1,11 +1,7 @@
 import { Invoice } from '../../interfaces/invoice';
 import { invoiceReducer } from './invoices.reducer';
 import * as InvoiceActions from './invoices.actions';
-import {
-  invoiceAdapter,
-  InvoiceState,
-  initialInvoiceState,
-} from './invoice.state';
+import { invoiceAdapter, initialInvoiceState } from './invoice.state';
 
 describe('Invoice Reducer', () => {
   const createInvoice = (id: string, amount: number): Invoice => ({
