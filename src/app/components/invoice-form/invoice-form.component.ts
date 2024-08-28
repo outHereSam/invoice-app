@@ -145,10 +145,16 @@ export class InvoiceFormComponent {
 
       const newInvoice = {
         ...formValue,
-        id: this.generatedId.generateUniqueId(),
-        createdAt: createdAt.toISOString().split('T')[0],
+        id: this.invoice
+          ? this.invoice.id
+          : this.generatedId.generateUniqueId(),
+        createdAt: this.invoice
+          ? this.invoice.createdAt
+          : createdAt.toISOString().split('T')[0],
         paymentDue: paymentDue.toISOString().split('T')[0],
-        status: 'pending' as 'paid' | 'pending' | 'draft',
+        status: this.invoice
+          ? this.invoice.status
+          : ('pending' as 'paid' | 'pending' | 'draft'),
         items: formValue.items.map((item: any) => ({
           ...item,
           total: item.quantity * item.price,
