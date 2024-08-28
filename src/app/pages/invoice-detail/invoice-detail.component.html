@@ -7,4 +7,6 @@
 <button (click)="deleteInvoice(invoice.id)">Delete</button>
 <button (click)="markAsPaid(invoice.id)">Mark as paid</button>
 <button (click)="markAsPending(invoice.id)">Mark as pending</button>
+} @if (invoice$ | async; as invoice) {
+<app-invoice-form [invoice]="invoice" />
 }

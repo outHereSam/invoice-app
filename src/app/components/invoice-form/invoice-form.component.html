@@ -1,4 +1,35 @@
+<p>invoice-form works!</p>
 <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label for="clientName">Client Name:</label>
+    <input id="clientName" type="text" formControlName="clientName" />
+  </div>
+
+  <div>
+    <label for="clientEmail">Client Email:</label>
+    <input id="clientEmail" type="email" formControlName="clientEmail" />
+  </div>
+
+  <div>
+    <label for="description">Description:</label>
+    <input id="description" type="text" formControlName="description" />
+  </div>
+
+  <div>
+    <label for="createdAt">Invoice Date:</label>
+    <input id="createdAt" type="date" formControlName="createdAt" />
+  </div>
+
+  <div>
+    <label for="paymentTerms">Payment Terms:</label>
+    <select id="paymentTerms" formControlName="paymentTerms">
+      <option value="">Select payment terms</option>
+      <option *ngFor="let option of paymentTermsOptions" [value]="option.value">
+        {{ option.label }}
+      </option>
+    </select>
+  </div>
+
   <div formGroupName="senderAddress">
     <h3>Sender Address</h3>
     <div>
@@ -19,17 +50,8 @@
     </div>
   </div>
 
-  <div formGroupName="senderDetails">
-    <div>
-      <label for="clientName">Client Name:</label>
-      <input id="clientName" type="text" formControlName="clientName" />
-    </div>
-
-    <div>
-      <label for="clientEmail">Client Email:</label>
-      <input id="clientEmail" type="email" formControlName="clientEmail" />
-    </div>
-
+  <div formGroupName="clientAddress">
+    <h3>Client Address</h3>
     <div>
       <label for="clientStreet">Street:</label>
       <input id="clientStreet" type="text" formControlName="street" />
@@ -46,33 +68,6 @@
       <label for="clientCountry">Country:</label>
       <input id="clientCountry" type="text" formControlName="country" />
     </div>
-
-    <div>
-      <label for="paymentTerms">Payment Terms:</label>
-      <select id="paymentTerms" formControlName="paymentTerms">
-        <option value="">Select payment terms</option>
-        <option
-          *ngFor="let option of paymentTermsOptions"
-          [value]="option.value"
-        >
-          {{ option.label }}
-        </option>
-      </select>
-    </div>
-
-    <div>
-      <label for="createdAt">Invoice Date:</label>
-      <input id="createdAt" type="date" formControlName="createdAt" />
-    </div>
-
-    <div>
-      <label for="description">Description:</label>
-      <input id="description" type="text" formControlName="description" />
-    </div>
-  </div>
-
-  <div formGroupName="clientAddress">
-    <h3>Client Address</h3>
   </div>
 
   <h3>Items</h3>
@@ -114,5 +109,7 @@
   </div>
   <button type="button" (click)="addItem()">Add New Item</button>
 
-  <button type="submit" [disabled]="!invoiceForm.valid">Create Invoice</button>
+  <button type="submit" [disabled]="!invoiceForm.valid">
+    {{ invoice ? "Update Invoice" : "Create Invoice" }}
+  </button>
 </form>
