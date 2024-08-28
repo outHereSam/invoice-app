@@ -1,0 +1,118 @@
+<form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+  <div formGroupName="senderAddress">
+    <h3>Sender Address</h3>
+    <div>
+      <label for="senderStreet">Street:</label>
+      <input id="senderStreet" type="text" formControlName="street" />
+    </div>
+    <div>
+      <label for="senderCity">City:</label>
+      <input id="senderCity" type="text" formControlName="city" />
+    </div>
+    <div>
+      <label for="senderPostCode">Post Code:</label>
+      <input id="senderPostCode" type="text" formControlName="postCode" />
+    </div>
+    <div>
+      <label for="senderCountry">Country:</label>
+      <input id="senderCountry" type="text" formControlName="country" />
+    </div>
+  </div>
+
+  <div formGroupName="senderDetails">
+    <div>
+      <label for="clientName">Client Name:</label>
+      <input id="clientName" type="text" formControlName="clientName" />
+    </div>
+
+    <div>
+      <label for="clientEmail">Client Email:</label>
+      <input id="clientEmail" type="email" formControlName="clientEmail" />
+    </div>
+
+    <div>
+      <label for="clientStreet">Street:</label>
+      <input id="clientStreet" type="text" formControlName="street" />
+    </div>
+    <div>
+      <label for="clientCity">City:</label>
+      <input id="clientCity" type="text" formControlName="city" />
+    </div>
+    <div>
+      <label for="clientPostCode">Post Code:</label>
+      <input id="clientPostCode" type="text" formControlName="postCode" />
+    </div>
+    <div>
+      <label for="clientCountry">Country:</label>
+      <input id="clientCountry" type="text" formControlName="country" />
+    </div>
+
+    <div>
+      <label for="paymentTerms">Payment Terms:</label>
+      <select id="paymentTerms" formControlName="paymentTerms">
+        <option value="">Select payment terms</option>
+        <option
+          *ngFor="let option of paymentTermsOptions"
+          [value]="option.value"
+        >
+          {{ option.label }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <label for="createdAt">Invoice Date:</label>
+      <input id="createdAt" type="date" formControlName="createdAt" />
+    </div>
+
+    <div>
+      <label for="description">Description:</label>
+      <input id="description" type="text" formControlName="description" />
+    </div>
+  </div>
+
+  <div formGroupName="clientAddress">
+    <h3>Client Address</h3>
+  </div>
+
+  <h3>Items</h3>
+  <div formArrayName="items">
+    <div *ngFor="let item of items.controls; let i = index" [formGroupName]="i">
+      <div>
+        <label [for]="'itemName' + i">Item Name:</label>
+        <input [id]="'itemName' + i" type="text" formControlName="name" />
+      </div>
+      <div>
+        <label [for]="'itemQuantity' + i">Quantity:</label>
+        <input
+          [id]="'itemQuantity' + i"
+          type="number"
+          formControlName="quantity"
+          (change)="calculateItemTotal(i)"
+        />
+      </div>
+      <div>
+        <label [for]="'itemPrice' + i">Price:</label>
+        <input
+          [id]="'itemPrice' + i"
+          type="number"
+          formControlName="price"
+          (change)="calculateItemTotal(i)"
+        />
+      </div>
+      <div>
+        <label [for]="'itemTotal' + i">Total:</label>
+        <input
+          [id]="'itemTotal' + i"
+          type="number"
+          formControlName="total"
+          readonly
+        />
+      </div>
+      <button type="button" (click)="removeItem(i)">Remove Item</button>
+    </div>
+  </div>
+  <button type="button" (click)="addItem()">Add New Item</button>
+
+  <button type="submit" [disabled]="!invoiceForm.valid">Create Invoice</button>
+</form>

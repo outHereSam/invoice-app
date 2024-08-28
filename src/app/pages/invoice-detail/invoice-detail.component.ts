@@ -10,11 +10,12 @@ import {
   deleteInvoice,
   updateInvoice,
 } from '../../state/invoices/invoices.actions';
+import { InvoiceFormComponent } from '../../components/invoice-form/invoice-form.component';
 
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, InvoiceFormComponent],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.sass',
 })

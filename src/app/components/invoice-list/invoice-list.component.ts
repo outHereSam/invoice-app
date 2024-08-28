@@ -11,11 +11,12 @@ import { loadInvoices } from '../../state/invoices/invoices.actions';
 import { AsyncPipe } from '@angular/common';
 import { AppState } from '../../state/app.state';
 import { RouterLink } from '@angular/router';
+import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 
 @Component({
   selector: 'app-invoice-list',
   standalone: true,
-  imports: [AsyncPipe, RouterLink],
+  imports: [AsyncPipe, RouterLink, InvoiceFormComponent],
   templateUrl: './invoice-list.component.html',
   styleUrl: './invoice-list.component.sass',
 })
