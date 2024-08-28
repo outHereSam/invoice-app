@@ -35,6 +35,10 @@ export const selectFilteredInvoices = createSelector(
   }
 );
 
+// Select a single invoice
+export const selectInvoiceById = (id: string) =>
+  createSelector(selectInvoiceEntities, (entities) => entities[id]);
+
 // Select invoice loading
 export const selectInvoiceLoading = createSelector(
   selectInvoiceState,

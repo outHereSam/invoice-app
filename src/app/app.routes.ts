@@ -1,8 +1,18 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { InvoiceDetailComponent } from './pages/invoice-detail/invoice-detail.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'invoice-detail/:id', component: InvoiceDetailComponent },
+  {
+    path: '',
+    loadComponent: () =>
+      import('./pages/home/home.component').then((m) => m.HomeComponent),
+  },
+  {
+    path: 'invoice-detail/:id',
+    loadComponent: () =>
+      import('./pages/invoice-detail/invoice-detail.component').then(
+        (m) => m.InvoiceDetailComponent
+      ),
+  },
+  { path: '*', component: HomeComponent },
 ];
