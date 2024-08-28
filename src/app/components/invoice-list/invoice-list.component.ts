@@ -30,8 +30,4 @@ export class InvoiceListComponent {
 
     this.filteredInvoices$.subscribe((invoices) => console.log(invoices));
   }
-
-  ngOnInit() {
-    this.store.dispatch(loadInvoices());
-  }
 }
