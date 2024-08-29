@@ -13,34 +13,33 @@
           alt="Chevron icon"
         />
       </button>
-
       <div class="filter-options">
-        <label for="paid">
-          Paid
+        <label>
           <input
             [checked]="(filters$ | async)?.paid"
             type="checkbox"
             name="paid"
             (change)="updateFilter('paid', $event)"
           />
+          Paid
         </label>
-        <label for="pending">
-          Pending
+        <label>
           <input
             [checked]="(filters$ | async)?.pending"
             type="checkbox"
             name="pending"
             (change)="updateFilter('pending', $event)"
           />
+          Pending
         </label>
-        <label for="draft">
-          Draft
+        <label>
           <input
             [checked]="(filters$ | async)?.draft"
             type="checkbox"
             name="draft"
             (change)="updateFilter('draft', $event)"
           />
+          Draft
         </label>
       </div>
     </div>
