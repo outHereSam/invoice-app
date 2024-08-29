@@ -3,7 +3,8 @@
 .container
     // border: solid 1px pink
     max-width: 730px
-    margin: 64px auto
+    margin: 32px auto
+    padding: 0 24px 143px 24px
 
     button 
         font-size: 14px
@@ -46,7 +47,16 @@
         .crud-btns
             display: flex
             align-items: center
+            justify-content: center
             gap: 8px
+
+            @media (max-width: 540px)
+                position: fixed
+                bottom: 0
+                left: 0
+                width: 100%
+                padding: 20px 24px
+
 
             .edit, .delete, .markAsPaid
                 padding: 17px 24px

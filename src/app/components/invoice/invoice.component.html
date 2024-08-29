@@ -14,25 +14,27 @@
     </div>
 
     <div class="client-details">
-      <div class="dates">
-        <div class="invoice-date">
-          <p class="title">Invoice Date</p>
-          <h1>{{ invoice.createdAt | date : "dd MMM yyy" }}</h1>
+      <div class="details-group">
+        <div class="dates">
+          <div class="invoice-date">
+            <p class="title">Invoice Date</p>
+            <h1>{{ invoice.createdAt | date : "dd MMM yyy" }}</h1>
+          </div>
+          <div class="due-date">
+            <p class="title">Payment Due</p>
+            <h1>{{ invoice.paymentDue | date : "dd MMM yyy" }}</h1>
+          </div>
         </div>
-        <div class="due-date">
-          <p class="title">Payment Due</p>
-          <h1>{{ invoice.paymentDue | date : "dd MMM yyy" }}</h1>
-        </div>
-      </div>
 
-      <div class="recipient">
-        <p class="title">Bill To</p>
-        <h1>{{ invoice.clientName }}</h1>
-        <div class="address">
-          <p>{{ invoice.clientAddress.street }}</p>
-          <p>{{ invoice.clientAddress.city }}</p>
-          <p>{{ invoice.clientAddress.postCode }}</p>
-          <p>{{ invoice.clientAddress.country }}</p>
+        <div class="recipient">
+          <p class="title">Bill To</p>
+          <h1>{{ invoice.clientName }}</h1>
+          <div class="address">
+            <p>{{ invoice.clientAddress.street }}</p>
+            <p>{{ invoice.clientAddress.city }}</p>
+            <p>{{ invoice.clientAddress.postCode }}</p>
+            <p>{{ invoice.clientAddress.country }}</p>
+          </div>
         </div>
       </div>
 
