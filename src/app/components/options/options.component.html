@@ -18,6 +18,7 @@
         <label for="paid">
           Paid
           <input
+            [checked]="(filters$ | async)?.paid"
             type="checkbox"
             name="paid"
             (change)="updateFilter('paid', $event)"
@@ -26,6 +27,7 @@
         <label for="pending">
           Pending
           <input
+            [checked]="(filters$ | async)?.pending"
             type="checkbox"
             name="pending"
             (change)="updateFilter('pending', $event)"
@@ -34,6 +36,7 @@
         <label for="draft">
           Draft
           <input
+            [checked]="(filters$ | async)?.draft"
             type="checkbox"
             name="draft"
             (change)="updateFilter('draft', $event)"

@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 import { OptionsComponent } from '../options/options.component';
 import { InvoiceCardComponent } from '../invoice-card/invoice-card.component';
+import { EmptyListComponent } from '../empty-list/empty-list.component';
 
 @Component({
   selector: 'app-invoice-list',
@@ -24,6 +25,7 @@ import { InvoiceCardComponent } from '../invoice-card/invoice-card.component';
     InvoiceFormComponent,
     OptionsComponent,
     InvoiceCardComponent,
+    EmptyListComponent,
   ],
   templateUrl: './invoice-list.component.html',
   styleUrl: './invoice-list.component.sass',
