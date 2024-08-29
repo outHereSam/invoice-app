@@ -4,7 +4,15 @@
     display: flex
     justify-content: space-between
     align-items: center
-    margin: 0 0 32px 0
+    margin: 0 auto 32px auto
+    max-width: 672px
+
+    @media (min-width: 750px)
+        margin: 0 auto 56px auto
+
+    @media (min-width: 1024px)
+        margin: 72px auto 56px auto
+
 
     .info
         h1
@@ -35,6 +43,17 @@
             border: none
             background: none
             cursor: pointer
+            display: flex
+            justify-content: space-between
+            align-items: center
+            
+            p
+                width: 34px
+                white-space: nowrap
+                overflow: hidden
+
+                @media (min-width: 750px)
+                    width: 120px
 
     .filter-options
         max-width: 192px
@@ -93,6 +112,19 @@
         border-radius: 24px
         background-color: $clr-purple-accent
         color: white
+        cursor: pointer
+        transition: background-color 0.2s ease-in
+
+        p
+            width: 28px
+            white-space: nowrap
+            overflow: hidden
+
+            @media (min-width: 750px)
+                width: 70px
+
+        &:hover
+            background-color: $clr-purple-light
 
         .plus
             width: 32px
