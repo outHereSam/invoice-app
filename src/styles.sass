@@ -25,12 +25,21 @@ body, button
 
 body
     height: 100vh
+    transition: 0.2s ease-in-out
 
-body.light-mode
-    background-color: $bg-white 
+[data-theme="dark"] 
+    $background-color: $bg-dark
+    $text-primary: $clr-gray-100
 
-body.dark-mode
-    background-color: $bg-dark 
-    color: $clr-gray-100
+    body
+        background-color: $background-color
+        color: $text-primary
+
+    button
+        color: $text-primary
+
+    h1
+        color: white
+
 
 

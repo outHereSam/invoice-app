@@ -31,8 +31,9 @@ export class AppComponent {
   constructor(private store: Store<AppState>) {
     this.themeMode$ = this.store.select(selectThemeMode);
     this.themeMode$.subscribe((themeMode) => {
-      document.body.classList.remove('light-mode', 'dark-mode');
-      document.body.classList.add(`${themeMode}-mode`);
+      // document.body.classList.remove('light-mode', 'dark-mode');
+      // document.body.classList.add(`${themeMode}-mode`);
+      document.documentElement.setAttribute('data-theme', themeMode);
     });
   }
 
