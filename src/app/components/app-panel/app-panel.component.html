@@ -6,19 +6,20 @@
 
   <div class="controls">
     <div class="theme-switcher">
-      <button class="light-mode">
-        <img
-          src="../../../assets/images/icon-sun.svg"
-          alt="Sun Icon"
-          class="sum"
-        />
-      </button>
-      <button class="dark-mode">
+      <button class="toggle-theme" (click)="onToggleTheme()">
+        @if ((themeMode$ | async) === 'light') {
         <img
           src="../../../assets/images/icon-moon.svg"
           alt="Moon Icon"
           class="moon"
         />
+        } @else {
+        <img
+          src="../../../assets/images/icon-sun.svg"
+          alt="Sun Icon"
+          class="sun"
+        />
+        }
       </button>
     </div>
     <div class="avatar">
