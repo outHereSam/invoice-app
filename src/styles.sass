@@ -55,26 +55,26 @@ body
     .invoice-card
         background-color: white
 
-        .paid
-            color: $status-green
-            background-color: $green-lighter
+    .paid
+        color: $status-green
+        background-color: $green-lighter
 
-            .point
-                background-color: $status-green
+        .point
+            background-color: $status-green
 
-        .pending
-            color: $status-orange
-            background-color: $orange-lighter
+    .pending
+        color: $status-orange
+        background-color: $orange-lighter
 
-            .point
-                background-color: $status-orange
+        .point
+            background-color: $status-orange
 
-        .draft
-            color: $clr-gray-400
-            background: $status-gray
+    .draft
+        color: $clr-gray-400
+        background: $status-gray
 
-            .point
-                background-color: $clr-gray-400
+        .point
+            background-color: $clr-gray-400
 
     .filter-options
         background-color: white
@@ -82,6 +82,16 @@ body
 
         label
             color: $clr-gray-1000
+
+    .invoice-options
+        background-color: white
+        box-shadow: 0 10px 20px rgba(72, 84, 159, 0.25)
+
+    .crud-btns
+        .edit
+            color: $clr-blueGray-400
+            background-color: #F9FAFE
+
 
 [data-theme="dark"] 
     $background-color: $bg-dark
@@ -103,27 +113,36 @@ body
     .invoice-card
         background-color: $clr-gray-800
 
-        .paid
-            color: $status-green
-            background-color: $status-green-bg-dark
+    .paid
+        color: $status-green
+        background-color: $status-green-bg-dark
 
-            .point
-                background-color: $status-green
+        .point
+            background-color: $status-green
 
-        .pending
-            color: $status-orange
-            background-color: $status-orange-bg-dark
+    .pending
+        color: $status-orange
+        background-color: $status-orange-bg-dark
 
-            .point
-                background-color: $status-orange
+        .point
+            background-color: $status-orange
 
-        .draft
-            color: $clr-gray-100
-            background: $status-draft-bg-dark
+    .draft
+        color: $clr-gray-100
+        background: $status-draft-bg-dark
 
-            .point
-                background-color: $clr-gray-100
+        .point
+            background-color: $clr-gray-100
 
     .filter-options
         background-color: $clr-gray-700
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25)
+
+    .invoice-options
+        background-color: $clr-gray-800
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25)
+
+    .crud-btns
+        .edit
+            color: $clr-gray-100
+            background-color: $clr-gray-700

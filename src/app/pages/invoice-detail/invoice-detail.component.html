@@ -1,4 +1,4 @@
-<p>
+<!-- <p>
   #{{ (invoice$ | async)?.id }} || {{ (invoice$ | async)?.clientName }} ||
   {{ (invoice$ | async)?.status }}
 </p>
@@ -9,4 +9,31 @@
 <button (click)="markAsPending(invoice.id)">Mark as pending</button>
 } @if (invoice$ | async; as invoice) {
 <app-invoice-form [invoice]="invoice" />
-}
+} -->
+
+<div class="container">
+  <button [routerLink]="['/']">
+    <img src="../../../assets/images/icon-arrow-left.svg" alt="Left Icon" />
+    Go Back
+  </button>
+
+  <div class="invoice-options">
+    <div class="status">
+      Status
+      <div [class]="(invoice$ | async)?.status">
+        <span class="point"></span>
+        {{ (invoice$ | async)?.status | titlecase }}
+      </div>
+    </div>
+
+    <div class="crud-btns">
+      @if (invoice$ | async; as invoice) {
+      <button class="edit">Edit</button>
+      <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
+      <button class="markAsPaid" (click)="markAsPaid(invoice.id)">
+        Mark as Paid
+      </button>
+      }
+    </div>
+  </div>
+</div>
