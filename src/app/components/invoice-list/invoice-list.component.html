@@ -3,18 +3,12 @@
   <div>Loading...</div>
   } @if (error$ | async) {
   <div>{{ error$ }}</div>
-  } @if (!(loading$ | async) && !(error$ | async)) {
-  <ul>
-    @for (invoice of filteredInvoices$ | async; track invoice.id) {
-
-    <li>
-      <a [routerLink]="['/invoice-detail', invoice.id]"
-        >{{ invoice.id }} - {{ invoice.clientName }} - {{ invoice.status }}</a
-      >
-    </li>
-    }
-  </ul>
-  }
+  } @if (!(loading$ | async) && !(error$ | async)) { @for (invoice of
+  filteredInvoices$ | async; track invoice.id) {
+  <div [routerLink]="['/invoice-detail', invoice.id]">
+    <app-invoice-card [invoice]="invoice" />
+  </div>
+  } }
 </div>
 
 <app-invoice-form />

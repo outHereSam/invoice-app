@@ -1,0 +1,18 @@
+<div class="invoice-card">
+  <div class="top">
+    <p class="id bold"><span>#</span>{{ invoice.id }}</p>
+    <p class="name">{{ invoice.clientName }}</p>
+  </div>
+  <div class="bottom">
+    <div class="details">
+      <p class="date">Due {{ invoice.paymentDue | date : "dd MMM YYY" }}</p>
+      <h4 class="amount bold">
+        {{ invoice.total | currency : "GBP" : "symbol" : "1.2-2" }}
+      </h4>
+    </div>
+    <div [class]="invoice.status">
+      <span class="point"></span>
+      {{ invoice.status | titlecase }}
+    </div>
+  </div>
+</div>

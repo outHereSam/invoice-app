@@ -1,0 +1,67 @@
+@import '../../../styles'
+
+.invoice-card
+    margin: 0 0 16px 0
+    padding: 24px
+    border-radius: 8px
+    background-color: white
+    display: flex
+    flex-direction: column
+    gap: 24px
+    box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.10)
+
+    .top
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        .id
+            font-weight: bold
+
+            span
+                color: $clr-blueGray-400
+
+    .bottom
+        display: flex
+        justify-content: space-between
+        align-items: center
+
+        .details
+            display: flex
+            flex-direction: column
+            gap: 8px
+
+        .point
+            width: 8px
+            height: 8px
+            display: inline-block
+            border-radius: 50%
+
+        .paid, .pending, .draft
+            display: flex
+            align-items: center
+            gap: 8px
+            padding: 13px 20px
+            border-radius: 6px
+
+        
+        .paid
+            color: $status-green
+            background-color: $green-lighter
+
+            .point
+                background-color: $status-green
+
+        .pending
+            color: $status-orange
+            background-color: $orange-lighter
+
+            .point
+                background-color: $status-orange
+
+        .draft
+            color: $clr-gray-400
+            background: $status-gray
+
+            .point
+                background-color: $clr-gray-400
