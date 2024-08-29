@@ -8,6 +8,8 @@
   <div [routerLink]="['/invoice-detail', invoice.id]">
     <app-invoice-card [invoice]="invoice" />
   </div>
+  } @empty {
+  <div>No invoices found</div>
   } }
 </div>
 

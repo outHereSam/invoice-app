@@ -4,11 +4,11 @@
     margin: 0 0 16px 0
     padding: 24px
     border-radius: 8px
-    background-color: white
     display: flex
     flex-direction: column
     gap: 24px
     box-shadow: 0 10px 10px -10px rgba(72, 84, 159, 0.10)
+    transition: 0.2s ease-in-out
 
     .top
         display: flex
@@ -43,25 +43,8 @@
             gap: 8px
             padding: 13px 20px
             border-radius: 6px
+            transition: 0.2s ease-in-out
+
 
         
-        .paid
-            color: $status-green
-            background-color: $green-lighter
-
-            .point
-                background-color: $status-green
-
-        .pending
-            color: $status-orange
-            background-color: $orange-lighter
-
-            .point
-                background-color: $status-orange
-
-        .draft
-            color: $clr-gray-400
-            background: $status-gray
-
-            .point
-                background-color: $clr-gray-400
+        

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import { updateFilters } from '../../state/invoices/invoices.actions';
+import { selectTotalInvoices } from '../../state/invoices/invoices.selectors';
 
 @Component({
   selector: 'app-options',
@@ -11,7 +12,12 @@ import { updateFilters } from '../../state/invoices/invoices.actions';
   styleUrl: './options.component.sass',
 })
 export class OptionsComponent {
-  constructor(private store: Store<AppState>) {}
+  count: number = 0;
+  constructor(private store: Store<AppState>) {
+    this.store.select(selectTotalInvoices).subscribe((count) => {
+      this.count = count;
+    });
+  }
   updateFilter(filterType: string, event: Event) {
     const checked = (event.target as HTMLInputElement).checked;
     this.store.dispatch(updateFilters({ filterType, filterValue: checked }));

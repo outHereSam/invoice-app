@@ -37,7 +37,5 @@ export class InvoiceListComponent {
     this.filteredInvoices$ = this.store.select(selectFilteredInvoices);
     this.loading$ = this.store.select(selectInvoiceLoading);
     this.error$ = this.store.select(selectInvoiceError);
-
-    this.filteredInvoices$.subscribe((invoices) => console.log(invoices));
   }
 }
