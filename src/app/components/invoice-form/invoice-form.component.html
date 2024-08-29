@@ -110,6 +110,7 @@
   <button type="button" (click)="addItem()">Add New Item</button>
 
   <button type="submit" [disabled]="!invoiceForm.valid">
-    {{ invoice ? "Update Invoice" : "Create Invoice" }}
+    {{ invoice ? "Save Changes" : "Save & Send" }}
   </button>
+  <button type="button" (click)="saveAsDraft()">Save as Draft</button>
 </form>

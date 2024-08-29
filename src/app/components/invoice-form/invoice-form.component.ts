@@ -28,9 +28,6 @@ import { selectInvoiceById } from '../../state/invoices/invoices.selectors';
 })
 export class InvoiceFormComponent {
   invoiceForm: FormGroup;
-  // items: FormArray;
-  // @Input() formType: 'addInvoice' | 'editInvoice' = 'addInvoice';
-  // isEditInvoice = this.formType === 'editInvoice';
 
   @Input() invoice: Invoice | null = null;
 
@@ -134,6 +131,29 @@ export class InvoiceFormComponent {
     const price = item.get('price')?.value;
     const total = quantity * price;
     item.patchValue({ total: total });
+  }
+
+  saveAsDraft() {
+    const formValue = this.invoiceForm.value;
+
+    const draftInvoice = {
+      ...formValue,
+      id: this.invoice ? this.invoice.id : this.generatedId.generateUniqueId(),
+      createdAt: new Date().toISOString().split('T')[0],
+      paymentDue: '', // Can be left empty for drafts
+      status: 'draft' as 'paid' | 'pending' | 'draft',
+      items: formValue.items.map((item: any) => ({
+        ...item,
+        total: (item.quantity || 0) * (item.price || 0),
+      })),
+      total: formValue.items.reduce(
+        (sum: number, item: any) =>
+          sum + (item.quantity || 0) * (item.price || 0),
+        0
+      ),
+    };
+
+    this.store.dispatch(addInvoice({ invoice: draftInvoice }));
   }
 
   onSubmit() {
