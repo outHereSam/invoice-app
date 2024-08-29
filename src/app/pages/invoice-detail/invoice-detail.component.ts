@@ -13,11 +13,18 @@ import {
 import { InvoiceFormComponent } from '../../components/invoice-form/invoice-form.component';
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
+import { InvoiceComponent } from '../../components/invoice/invoice.component';
 
 @Component({
   selector: 'app-invoice-detail',
   standalone: true,
-  imports: [AsyncPipe, InvoiceFormComponent, RouterLink, TitleCasePipe],
+  imports: [
+    AsyncPipe,
+    InvoiceFormComponent,
+    RouterLink,
+    TitleCasePipe,
+    InvoiceComponent,
+  ],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.sass',
 })

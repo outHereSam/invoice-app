@@ -1,0 +1,75 @@
+<div class="invoice">
+  <div class="details">
+    <div class="header">
+      <div class="identifier">
+        <h1><span>#</span>{{ invoice.id }}</h1>
+        <p class="description">{{ invoice.description }}</p>
+      </div>
+      <div class="sender-address">
+        <p>{{ invoice.senderAddress.street }}</p>
+        <p>{{ invoice.senderAddress.city }}</p>
+        <p>{{ invoice.senderAddress.postCode }}</p>
+        <p>{{ invoice.senderAddress.country }}</p>
+      </div>
+    </div>
+
+    <div class="client-details">
+      <div class="dates">
+        <div class="invoice-date">
+          <p class="title">Invoice Date</p>
+          <h1>{{ invoice.createdAt | date : "dd MMM yyy" }}</h1>
+        </div>
+        <div class="due-date">
+          <p class="title">Payment Due</p>
+          <h1>{{ invoice.paymentDue | date : "dd MMM yyy" }}</h1>
+        </div>
+      </div>
+
+      <div class="recipient">
+        <p class="title">Bill To</p>
+        <h1>{{ invoice.clientName }}</h1>
+        <div class="address">
+          <p>{{ invoice.clientAddress.street }}</p>
+          <p>{{ invoice.clientAddress.city }}</p>
+          <p>{{ invoice.clientAddress.postCode }}</p>
+          <p>{{ invoice.clientAddress.country }}</p>
+        </div>
+      </div>
+
+      <div class="client-email">
+        <p class="title">Sent to</p>
+        <h1>{{ invoice.clientEmail }}</h1>
+      </div>
+    </div>
+
+    <div class="item-list">
+      <div class="table-heading">
+        <p>Item Name</p>
+        <p>QTY.</p>
+        <p>Price</p>
+        <p>Total</p>
+      </div>
+      <div class="items">
+        @for(item of invoice.items; track $index) {
+        <div class="item">
+          <p class="item-name">{{ item.name }}</p>
+          <p class="quantity">{{ item.quantity }}</p>
+          <p class="price">
+            {{ item.price | currency : "GBP" : "symbol" : "1.2-2" }}
+          </p>
+          <p class="total">
+            {{ item.total | currency : "GBP" : "symbol" : "1.2-2" }}
+          </p>
+        </div>
+        }
+      </div>
+    </div>
+
+    <div class="amount-due">
+      <p>Amount Due</p>
+      <h1>
+        {{ invoice.total | currency : "GBP" : "symbol" : "1.2-2" }}
+      </h1>
+    </div>
+  </div>
+</div>

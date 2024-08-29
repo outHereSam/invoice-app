@@ -36,4 +36,9 @@
       }
     </div>
   </div>
+
+  @if (invoice$ | async; as invoice) {
+
+  <app-invoice [invoice]="invoice" />
+  }
 </div>
