@@ -1,18 +1,20 @@
-@if(loading$ | async) {
-<div>Loading...</div>
-} @if (error$ | async) {
-<div>{{ error$ }}</div>
-} @if (!(loading$ | async) && !(error$ | async)) {
-<ul>
-  @for (invoice of filteredInvoices$ | async; track invoice.id) {
+<div class="filtered-invoices">
+  @if(loading$ | async) {
+  <div>Loading...</div>
+  } @if (error$ | async) {
+  <div>{{ error$ }}</div>
+  } @if (!(loading$ | async) && !(error$ | async)) {
+  <ul>
+    @for (invoice of filteredInvoices$ | async; track invoice.id) {
 
-  <li>
-    <a [routerLink]="['/invoice-detail', invoice.id]"
-      >{{ invoice.id }} - {{ invoice.clientName }} - {{ invoice.status }}</a
-    >
-  </li>
+    <li>
+      <a [routerLink]="['/invoice-detail', invoice.id]"
+        >{{ invoice.id }} - {{ invoice.clientName }} - {{ invoice.status }}</a
+      >
+    </li>
+    }
+  </ul>
   }
-</ul>
-}
+</div>
 
 <app-invoice-form />

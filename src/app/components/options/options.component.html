@@ -1,0 +1,52 @@
+<div class="header-options">
+  <div class="info">
+    <h1>Invoices</h1>
+    <p>7 Invoices</p>
+  </div>
+
+  <div class="options">
+    <div class="filter-container">
+      <button class="select-filter">
+        Filter
+        <img
+          src="../../../assets/images/icon-arrow-down.svg"
+          alt="Chevron icon"
+        />
+      </button>
+
+      <div class="filter-options">
+        <label for="paid">
+          Paid
+          <input
+            type="checkbox"
+            name="paid"
+            (change)="updateFilter('paid', $event)"
+          />
+        </label>
+        <label for="pending">
+          Pending
+          <input
+            type="checkbox"
+            name="pending"
+            (change)="updateFilter('pending', $event)"
+          />
+        </label>
+        <label for="draft">
+          Draft
+          <input
+            type="checkbox"
+            name="draft"
+            (change)="updateFilter('draft', $event)"
+          />
+        </label>
+      </div>
+    </div>
+
+    <button class="create">
+      <div class="plus">
+        <img src="../../../assets/images/icon-plus.svg" alt="Plus Button" />
+      </div>
+      New
+    </button>
+  </div>
+</div>

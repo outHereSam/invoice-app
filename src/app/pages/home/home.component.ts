@@ -5,11 +5,12 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../state/app.state';
 import { selectFilters } from '../../state/invoices/invoices.selectors';
 import { updateFilters } from '../../state/invoices/invoices.actions';
+import { OptionsComponent } from '../../components/options/options.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [InvoiceListComponent],
+  imports: [InvoiceListComponent, OptionsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
 })
@@ -18,10 +19,5 @@ export class HomeComponent {
 
   constructor(private store: Store<AppState>) {
     this.filters$ = this.store.select(selectFilters);
-  }
-
-  updateFilter(filterType: string, event: Event) {
-    const checked = (event.target as HTMLInputElement).checked;
-    this.store.dispatch(updateFilters({ filterType, filterValue: checked }));
   }
 }
