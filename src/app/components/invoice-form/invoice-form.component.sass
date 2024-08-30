@@ -1,2 +1,56 @@
+@import '../../../styles'
+
 .invoice-form
-    display: none
+    // border: solid 1px pink
+    // max-width: 80%
+    padding: 104px 24px 24px 24px
+
+    button 
+        font-size: 14px
+        font-weight: 500
+        border: none
+        background: none
+        display: flex
+        align-items: center
+        gap: 23px
+        cursor: pointer
+
+    h1
+        margin: 24px 0 24px 0
+
+    form
+        .subtitle
+            font-size: 14px
+            font-weight: 500
+            color: $clr-purple-accent
+            margin: 0 0 24px 0
+
+        label 
+            font-size: 14px
+            display: block
+            margin: 0 0 10px 0
+
+        input
+            width: 100%
+
+        input[type="text"], input[type="email"]
+            padding: 17px 20px
+            border-radius: 4px
+            outline: none
+
+            &:focus-visible
+                outline: 1px solid $clr-purple-accent
+
+
+        .sender-deets 
+            // border: solid 1px pink
+            display: flex
+            flex-direction: column
+            gap: 24px
+            margin: 0 0 40px 0
+
+            .small
+                display: flex
+                justify-content: space-between
+                gap: 23px
+            

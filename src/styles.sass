@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/lara-light-blue/theme.css"
+@import "primeng/resources/primeng.css"
 
 // primaries
 $clr-purple-accent: #7C5DFA
@@ -115,6 +117,17 @@ body
         h1
             color: white
 
+    input[type="text"], input[type="email"]
+        border: solid 1px $clr-gray-100
+        background-color: white
+
+    label
+        color: $clr-blueGray-400
+        font-weight: 400
+
+    .invoice-form
+        background-color: white
+
 
 [data-theme="dark"] 
     $background-color: $bg-dark
@@ -189,3 +202,10 @@ body
 
     .amount-due
         background-color: $clr-gray-1000
+
+    input[type="text"], input[type="email"]
+        border: solid 1px #252945
+        background-color: $clr-gray-800
+
+    .invoice-form
+        background-color: $bg-dark

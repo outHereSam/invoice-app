@@ -1,5 +1,41 @@
 <div class="invoice-form">
+  <button>
+    <img src="../../../assets/images/icon-arrow-left.svg" alt="Left Icon" />
+    Go Back
+  </button>
+
+  @if (invoice) {
+  <h1>Edit Invoice</h1>
+  } @else {
+  <h1>New Invoice</h1>
+  }
+
   <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <div formGroupName="senderAddress" class="sender">
+      <h3 class="subtitle">Bill From</h3>
+
+      <div class="sender-deets">
+        <div>
+          <label for="senderStreet">Street</label>
+          <input id="senderStreet" type="text" formControlName="street" />
+        </div>
+        <div class="small">
+          <div>
+            <label for="senderCity">City</label>
+            <input id="senderCity" type="text" formControlName="city" />
+          </div>
+          <div>
+            <label for="senderPostCode">Post Code</label>
+            <input id="senderPostCode" type="text" formControlName="postCode" />
+          </div>
+        </div>
+        <div>
+          <label for="senderCountry">Country</label>
+          <input id="senderCountry" type="text" formControlName="country" />
+        </div>
+      </div>
+    </div>
+
     <div>
       <label for="clientName">Client Name:</label>
       <input id="clientName" type="text" formControlName="clientName" />
@@ -31,26 +67,6 @@
           {{ option.label }}
         </option>
       </select>
-    </div>
-
-    <div formGroupName="senderAddress">
-      <h3>Sender Address</h3>
-      <div>
-        <label for="senderStreet">Street:</label>
-        <input id="senderStreet" type="text" formControlName="street" />
-      </div>
-      <div>
-        <label for="senderCity">City:</label>
-        <input id="senderCity" type="text" formControlName="city" />
-      </div>
-      <div>
-        <label for="senderPostCode">Post Code:</label>
-        <input id="senderPostCode" type="text" formControlName="postCode" />
-      </div>
-      <div>
-        <label for="senderCountry">Country:</label>
-        <input id="senderCountry" type="text" formControlName="country" />
-      </div>
     </div>
 
     <div formGroupName="clientAddress">
