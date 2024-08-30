@@ -75,11 +75,22 @@
             margin: 45px 0 0 0
 
             .table-heading
-                display: flex
                 // border: solid 1px pink
-                justify-content: space-between
                 margin: 0 0 32px 0
                 display: none
+
+                @media (min-width: 580px)
+                    display: grid
+                    align-content: space-between
+                    grid-template-columns: repeat(4, 1fr)
+
+                p
+                    justify-self: end
+                    align-self: center
+
+                    &:first-child
+                        justify-self: start
+                        align-items: center
 
             .items
                 display: flex
@@ -90,6 +101,25 @@
                     display: flex
                     justify-content: space-between
                     align-items: center
+
+                    @media (min-width: 580px)
+                        display: none
+
+                .tablet-desktop
+                    display: none
+
+                    @media (min-width: 580px)
+                        display: grid
+                        align-content: space-between
+                        grid-template-columns: repeat(4, 1fr)
+
+                    p
+                        justify-self: end
+                        align-self: center
+
+                        &:first-child
+                            justify-self: start
+                            align-items: center
 
                     .item-name, .price, .total
                         font-weight: bold

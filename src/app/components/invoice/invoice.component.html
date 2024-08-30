@@ -67,6 +67,18 @@
             {{ item.total | currency : "GBP" : "symbol" : "1.2-2" }}
           </p>
         </div>
+
+        <div class="item tablet-desktop">
+          <p class="item-name">{{ item.name }}</p>
+          <p class="quantity">{{ item.quantity }}</p>
+          <p class="price">
+            {{ item.price | currency : "GBP" : "symbol" : "1.2-2" }}
+          </p>
+          <p class="total">
+            {{ item.total | currency : "GBP" : "symbol" : "1.2-2" }}
+          </p>
+        </div>
+
         }
       </div>
     </div>
