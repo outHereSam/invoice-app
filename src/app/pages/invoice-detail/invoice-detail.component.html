@@ -28,7 +28,7 @@
 
     <div class="crud-btns">
       @if (invoice$ | async; as invoice) {
-      <button class="edit-btn">Edit</button>
+      <button class="edit-btn" (click)="modalService.openModal()">Edit</button>
       <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
       @if (invoice.status !== 'paid') {
       <button class="markAsPaid" (click)="markAsPaid(invoice.id)">
@@ -47,3 +47,10 @@
   <app-invoice [invoice]="invoice" />
   }
 </div>
+
+@if(invoice$ |async; as invoice) {
+<app-invoice-form
+  [style]="{ display: modalService.isOpened ? 'block' : 'none' }"
+  [invoice]="invoice"
+/>
+}

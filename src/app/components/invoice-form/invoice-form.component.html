@@ -1,4 +1,8 @@
-<div class="overlay"></div>
+<div
+  class="overlay"
+  [style]="{ display: modalService.isOpened ? 'block' : 'none' }"
+  (click)="modalService.closeModal()"
+></div>
 <div class="invoice-form">
   <button class="navigate">
     <img src="../../../assets/images/icon-arrow-left.svg" alt="Left Icon" />
@@ -6,7 +10,7 @@
   </button>
 
   @if (invoice) {
-  <h1>Edit Invoice</h1>
+  <h1>Edit #{{ invoice.id }}</h1>
   } @else {
   <h1>New Invoice</h1>
   }

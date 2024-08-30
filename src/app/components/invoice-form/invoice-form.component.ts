@@ -21,6 +21,7 @@ import { selectInvoiceById } from '../../state/invoices/invoices.selectors';
 import { SidebarModule } from 'primeng/sidebar';
 import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
+import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-invoice-form',
   standalone: true,
@@ -51,7 +52,8 @@ export class InvoiceFormComponent {
   constructor(
     private fb: FormBuilder,
     private store: Store<AppState>,
-    private generatedId: UniqueIdService
+    private generatedId: UniqueIdService,
+    protected modalService: ModalService
   ) {
     this.invoiceForm = this.fb.group({});
 

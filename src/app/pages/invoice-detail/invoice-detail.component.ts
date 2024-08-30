@@ -14,6 +14,7 @@ import { InvoiceFormComponent } from '../../components/invoice-form/invoice-form
 import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { InvoiceComponent } from '../../components/invoice/invoice.component';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -34,7 +35,8 @@ export class InvoiceDetailComponent {
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    protected modalService: ModalService
   ) {
     this.invoice$ = this.route.paramMap.pipe(
       switchMap((params) => {

@@ -15,6 +15,7 @@ import { InvoiceFormComponent } from '../invoice-form/invoice-form.component';
 import { OptionsComponent } from '../options/options.component';
 import { InvoiceCardComponent } from '../invoice-card/invoice-card.component';
 import { EmptyListComponent } from '../empty-list/empty-list.component';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-invoice-list',
@@ -35,7 +36,10 @@ export class InvoiceListComponent {
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    protected modalService: ModalService
+  ) {
     this.filteredInvoices$ = this.store.select(selectFilteredInvoices);
     this.loading$ = this.store.select(selectInvoiceLoading);
     this.error$ = this.store.select(selectInvoiceError);

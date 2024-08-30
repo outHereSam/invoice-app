@@ -9,6 +9,7 @@ import {
 } from '../../state/invoices/invoices.selectors';
 import { Observable } from 'rxjs';
 import { AsyncPipe } from '@angular/common';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-options',
@@ -25,7 +26,10 @@ export class OptionsComponent {
     draft: 0,
   };
   filters$: Observable<{ paid: boolean; pending: boolean; draft: boolean }>;
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    protected modalService: ModalService
+  ) {
     // this.store.select(selectTotalInvoices).subscribe((count) => {
     //   this.count = count;
     // });

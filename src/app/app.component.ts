@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
 import { ThemeState } from './state/theme/theme.state';
 import { selectThemeMode } from './state/theme/theme.selectors';
 import { AsyncPipe } from '@angular/common';
-
+import { InvoiceFormComponent } from './components/invoice-form/invoice-form.component';
+import { ModalService } from './services/modal.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,6 +21,7 @@ import { AsyncPipe } from '@angular/common';
     InvoiceDetailComponent,
     AppPanelComponent,
     AsyncPipe,
+    InvoiceFormComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
@@ -28,7 +30,10 @@ export class AppComponent {
   title = 'invoice-app';
   themeMode$: Observable<'light' | 'dark'>;
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    protected modalService: ModalService
+  ) {
     this.themeMode$ = this.store.select(selectThemeMode);
     this.themeMode$.subscribe((themeMode) => {
       // document.body.classList.remove('light-mode', 'dark-mode');

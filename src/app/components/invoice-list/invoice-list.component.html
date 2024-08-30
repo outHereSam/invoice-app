@@ -13,4 +13,6 @@
   } }
 </div>
 
-<app-invoice-form />
+<app-invoice-form
+  [style]="{ display: modalService.isOpened ? 'block' : 'none' }"
+/>
