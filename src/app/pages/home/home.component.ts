@@ -7,19 +7,11 @@ import { selectFilters } from '../../state/invoices/invoices.selectors';
 import { updateFilters } from '../../state/invoices/invoices.actions';
 import { OptionsComponent } from '../../components/options/options.component';
 import { InvoiceFormComponent } from '../../components/invoice-form/invoice-form.component';
-import { ButtonModule } from 'primeng/button';
-import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [
-    InvoiceListComponent,
-    OptionsComponent,
-    InvoiceFormComponent,
-    ButtonModule,
-    SidebarModule,
-  ],
+  imports: [InvoiceListComponent, OptionsComponent, InvoiceFormComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
 })
