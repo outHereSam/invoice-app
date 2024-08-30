@@ -30,10 +30,15 @@
       @if (invoice$ | async; as invoice) {
       <button class="edit-btn">Edit</button>
       <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
+      @if (invoice.status !== 'paid') {
       <button class="markAsPaid" (click)="markAsPaid(invoice.id)">
         Mark as Paid
       </button>
-      }
+      } @else {
+      <button class="markAsPaid" (click)="markAsPending(invoice.id)">
+        Mark as Pending
+      </button>
+      } }
     </div>
   </div>
 
