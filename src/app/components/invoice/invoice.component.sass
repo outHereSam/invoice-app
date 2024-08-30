@@ -34,14 +34,21 @@
 
         .client-details
             display: flex
-            flex-direction: column
             justify-content: space-between
             gap: 36px
 
+            @media (max-width: 580px)
+                flex-direction: column
+
             .details-group
                 display: flex
-                // align-items: center
+                align-items: center
                 justify-content: space-between
+                gap: 40px
+
+                @media (min-width: 650px)
+                    gap: 98px
+                
             
             .title
                 margin: 0 0 12px 0
@@ -72,14 +79,28 @@
                 // border: solid 1px pink
                 justify-content: space-between
                 margin: 0 0 32px 0
+                display: none
 
             .items
+                display: flex
+                flex-direction: column
+                gap: 24px
+
                 .item
                     display: flex
                     justify-content: space-between
+                    align-items: center
 
                     .item-name, .price, .total
                         font-weight: bold
+
+                    .item-name
+                        margin: 0 0 8px 0
+
+                    .sub-total
+                        // border: solid 1px pink
+                        display: flex
+                        gap: 6px
 
         .amount-due
             padding: 24px

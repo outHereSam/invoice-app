@@ -28,7 +28,7 @@
 
     <div class="crud-btns">
       @if (invoice$ | async; as invoice) {
-      <button class="edit">Edit</button>
+      <button class="edit-btn">Edit</button>
       <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
       <button class="markAsPaid" (click)="markAsPaid(invoice.id)">
         Mark as Paid
