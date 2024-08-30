@@ -100,11 +100,20 @@
             flex-direction: column
             gap: 24px
             margin: 0 0 24px 0
+            // border: solid 1px pink
+            
+            div
+                width: 100%
+
+            @media (min-width: 680px)
+                flex-direction: row
+                justify-content: space-between
 
             .payment-terms
                 display: flex
                 align-items: center
                 gap: 16px
+ 
 
                 img
                     margin: -40px
