@@ -64,14 +64,6 @@ export class InvoiceFormComponent {
 
   initForm() {
     this.invoiceForm = this.fb.group({
-      createdAt: [this.invoice?.createdAt || '', Validators.required],
-      clientName: [this.invoice?.clientName || '', Validators.required],
-      clientEmail: [
-        this.invoice?.clientEmail || '',
-        [Validators.required, Validators.email],
-      ],
-      description: [this.invoice?.description || '', Validators.required],
-      paymentTerms: [this.invoice?.paymentTerms || '', Validators.required],
       senderAddress: this.fb.group({
         street: [this.invoice?.senderAddress.street || '', Validators.required],
         city: [this.invoice?.senderAddress.city || '', Validators.required],
@@ -84,6 +76,11 @@ export class InvoiceFormComponent {
           Validators.required,
         ],
       }),
+      clientName: [this.invoice?.clientName || '', Validators.required],
+      clientEmail: [
+        this.invoice?.clientEmail || '',
+        [Validators.required, Validators.email],
+      ],
       clientAddress: this.fb.group({
         street: [this.invoice?.clientAddress.street || '', Validators.required],
         city: [this.invoice?.clientAddress.city || '', Validators.required],
@@ -96,6 +93,9 @@ export class InvoiceFormComponent {
           Validators.required,
         ],
       }),
+      createdAt: [this.invoice?.createdAt || '', Validators.required],
+      paymentTerms: [this.invoice?.paymentTerms || '', Validators.required],
+      description: [this.invoice?.description || '', Validators.required],
       items: this.fb.array(
         this.invoice?.items.map((item) => this.createItemFormGroup(item)) || []
       ),

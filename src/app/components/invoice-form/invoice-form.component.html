@@ -11,12 +11,11 @@
   }
 
   <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
-    <div formGroupName="senderAddress" class="sender">
+    <div formGroupName="senderAddress">
       <h3 class="subtitle">Bill From</h3>
-
-      <div class="sender-deets">
+      <div class="form-group">
         <div>
-          <label for="senderStreet">Street</label>
+          <label for="senderStreet">Street Address</label>
           <input id="senderStreet" type="text" formControlName="street" />
         </div>
         <div class="small">
@@ -36,19 +35,39 @@
       </div>
     </div>
 
-    <div>
-      <label for="clientName">Client Name:</label>
-      <input id="clientName" type="text" formControlName="clientName" />
-    </div>
+    <!-- Bill To -->
+    <h3 class="subtitle">Bill To</h3>
+    <div class="form-group">
+      <div>
+        <label for="clientName">Client Name</label>
+        <input id="clientName" type="text" formControlName="clientName" />
+      </div>
 
-    <div>
-      <label for="clientEmail">Client Email:</label>
-      <input id="clientEmail" type="email" formControlName="clientEmail" />
-    </div>
+      <div>
+        <label for="clientEmail">Client Email</label>
+        <input id="clientEmail" type="email" formControlName="clientEmail" />
+      </div>
 
-    <div>
-      <label for="description">Description:</label>
-      <input id="description" type="text" formControlName="description" />
+      <div formGroupName="clientAddress" class="client">
+        <div>
+          <label for="clientStreet">Street Address</label>
+          <input id="clientStreet" type="text" formControlName="street" />
+        </div>
+        <div class="small">
+          <div>
+            <label for="clientCity">City</label>
+            <input id="clientCity" type="text" formControlName="city" />
+          </div>
+          <div>
+            <label for="clientPostCode">Post Code</label>
+            <input id="clientPostCode" type="text" formControlName="postCode" />
+          </div>
+        </div>
+        <div>
+          <label for="clientCountry">Country:</label>
+          <input id="clientCountry" type="text" formControlName="country" />
+        </div>
+      </div>
     </div>
 
     <div>
@@ -69,71 +88,74 @@
       </select>
     </div>
 
-    <div formGroupName="clientAddress">
-      <h3>Client Address</h3>
-      <div>
-        <label for="clientStreet">Street:</label>
-        <input id="clientStreet" type="text" formControlName="street" />
-      </div>
-      <div>
-        <label for="clientCity">City:</label>
-        <input id="clientCity" type="text" formControlName="city" />
-      </div>
-      <div>
-        <label for="clientPostCode">Post Code:</label>
-        <input id="clientPostCode" type="text" formControlName="postCode" />
-      </div>
-      <div>
-        <label for="clientCountry">Country:</label>
-        <input id="clientCountry" type="text" formControlName="country" />
-      </div>
+    <div>
+      <label for="description">Description:</label>
+      <input id="description" type="text" formControlName="description" />
     </div>
 
-    <h3>Items</h3>
+    <h3 class="title">Item List</h3>
     <div formArrayName="items">
       <div
         *ngFor="let item of items.controls; let i = index"
         [formGroupName]="i"
       >
         <div>
-          <label [for]="'itemName' + i">Item Name:</label>
+          <label [for]="'itemName' + i">Item Name</label>
           <input [id]="'itemName' + i" type="text" formControlName="name" />
         </div>
-        <div>
-          <label [for]="'itemQuantity' + i">Quantity:</label>
-          <input
-            [id]="'itemQuantity' + i"
-            type="number"
-            formControlName="quantity"
-            (change)="calculateItemTotal(i)"
-          />
+        <div class="item-smalls">
+          <div>
+            <label [for]="'itemQuantity' + i">Qty.</label>
+            <input
+              [id]="'itemQuantity' + i"
+              type="number"
+              formControlName="quantity"
+              (change)="calculateItemTotal(i)"
+            />
+          </div>
+          <div>
+            <label [for]="'itemPrice' + i">Price</label>
+            <input
+              [id]="'itemPrice' + i"
+              type="number"
+              formControlName="price"
+              (change)="calculateItemTotal(i)"
+            />
+          </div>
+          <div>
+            <label [for]="'itemTotal' + i">Total</label>
+            <input
+              [id]="'itemTotal' + i"
+              type="number"
+              formControlName="total"
+              readonly
+              class="total-input"
+            />
+          </div>
+          <button type="button" (click)="removeItem(i)">
+            <img
+              src="../../../assets/images/icon-delete.svg"
+              alt="Delete Icon"
+            />
+          </button>
         </div>
-        <div>
-          <label [for]="'itemPrice' + i">Price:</label>
-          <input
-            [id]="'itemPrice' + i"
-            type="number"
-            formControlName="price"
-            (change)="calculateItemTotal(i)"
-          />
-        </div>
-        <div>
-          <label [for]="'itemTotal' + i">Total:</label>
-          <input
-            [id]="'itemTotal' + i"
-            type="number"
-            formControlName="total"
-            readonly
-          />
-        </div>
-        <button type="button" (click)="removeItem(i)">Remove Item</button>
       </div>
     </div>
-    <button type="button" (click)="addItem()">Add New Item</button>
 
-    <button type="submit" [disabled]="!invoiceForm.valid">
-      {{ invoice ? "Save Changes" : "Save & Send" }}
+    <button type="button" (click)="addItem()" class="new-item">
+      +Add New Item
     </button>
-    <button type="button" (click)="saveAsDraft()">Save as Draft</button>
+
+    <div class="buttons">
+      @if (!invoice) {
+      <button class="discard">Discard</button>
+      }
+      <button class="save-draft" type="button" (click)="saveAsDraft()">
+        Save as Draft
+      </button>
+      <button class="save" type="submit" [disabled]="!invoiceForm.valid">
+        {{ invoice ? "Save Changes" : "Save & Send" }}
+      </button>
+    </div>
   </form>
 </div>

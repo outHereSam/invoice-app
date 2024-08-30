@@ -16,6 +16,8 @@ $clr-gray-400: #373B53
 $clr-gray-700: #252945
 $clr-gray-800: #1E2139
 $clr-gray-1000: #0C0E16
+$clr-gray-500: #F9FAFE
+$clr-blue-dark: #252945
 
 $status-green: #33D69F
 $status-orange: #FF8F00
@@ -89,12 +91,12 @@ body
         background-color: white
         box-shadow: 0 10px 20px rgba(72, 84, 159, 0.25)
 
-    .crud-btns
+    .crud-btns, .buttons
         background-color: white
 
         .edit-btn
             color: $clr-blueGray-400
-            background-color: #F9FAFE
+            background-color: $clr-gray-500
 
     .invoice
         background-color: white
@@ -108,7 +110,7 @@ body
                 color: $clr-blueGray-400
 
     .item-list
-        background-color: #F9FAFE
+        background-color: $clr-gray-500
 
 
     .amount-due
@@ -117,7 +119,7 @@ body
         h1
             color: white
 
-    input[type="text"], input[type="email"]
+    input[type="text"], input[type="email"], input[type="number"]
         border: solid 1px $clr-gray-100
         background-color: white
 
@@ -127,6 +129,12 @@ body
 
     .invoice-form
         background-color: white
+
+    .discard
+        background-color: $clr-gray-500
+
+    button.new-item
+        background-color: $clr-gray-500
 
 
 [data-theme="dark"] 
@@ -178,12 +186,12 @@ body
         background-color: $clr-gray-800
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25)
 
-    .crud-btns
+    .crud-btns, .buttons
         background-color: $clr-gray-800
 
         .edit-btn
             color: $clr-blueGray-400
-            background-color: #F9FAFE
+            background-color: $clr-gray-500
             
 
     .invoice
@@ -204,8 +212,14 @@ body
         background-color: $clr-gray-1000
 
     input[type="text"], input[type="email"]
-        border: solid 1px #252945
+        border: solid 1px $clr-blue-dark
         background-color: $clr-gray-800
 
     .invoice-form
         background-color: $bg-dark
+
+    .discard
+        background-color: $clr-blue-dark
+
+    button.new-item
+        background-color: $clr-blue-dark

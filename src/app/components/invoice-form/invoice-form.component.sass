@@ -5,6 +5,9 @@
     // max-width: 80%
     padding: 104px 24px 24px 24px
 
+    @media (min-width: 1024px)
+        padding: 56px
+
     button 
         font-size: 14px
         font-weight: 500
@@ -33,7 +36,7 @@
         input
             width: 100%
 
-        input[type="text"], input[type="email"]
+        input[type="text"], input[type="email"], input[type="number"]
             padding: 17px 20px
             border-radius: 4px
             outline: none
@@ -41,8 +44,7 @@
             &:focus-visible
                 outline: 1px solid $clr-purple-accent
 
-
-        .sender-deets 
+        .form-group
             // border: solid 1px pink
             display: flex
             flex-direction: column
@@ -53,4 +55,58 @@
                 display: flex
                 justify-content: space-between
                 gap: 23px
+
+            .client
+                .small
+                    margin: 24px 0
+
+        .item-smalls
+            // border: solid 1px pink
+            display: flex
+            align-items: center
+            gap: 16px
+            margin: 24px 0 48px 0
+
+            input
+                appearance: none
+                outline: none
+
+            .total-input
+                border: none
+
+        button.new-item
+            display: block
+            width: 100%
+            padding: 18px 0
+            border-radius: 24px
+            margin-bottom: 80px
+            
+            
+        .buttons
+            position: fixed
+            bottom: 0
+            left: 0
+            width: 100%
+            display: flex
+            align-items: center
+            justify-content: center
+            gap: 8px
+            box-shadow: 0 -10px 10px -10px rgba(72, 84, 159, 0.10)
+            padding: 20px 24px
+
+            button
+                padding: 17px 16px
+                border-radius: 24px
+
+            .save-draft
+                background-color: $clr-gray-400
+                color: $clr-gray-100
+
+            .save
+                background-color: $clr-purple-accent
+                color: white
+
+        .title
+            margin: 66px 0 24px 0
+
             

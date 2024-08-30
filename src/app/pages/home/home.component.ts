@@ -7,15 +7,24 @@ import { selectFilters } from '../../state/invoices/invoices.selectors';
 import { updateFilters } from '../../state/invoices/invoices.actions';
 import { OptionsComponent } from '../../components/options/options.component';
 import { InvoiceFormComponent } from '../../components/invoice-form/invoice-form.component';
+import { ButtonModule } from 'primeng/button';
+import { SidebarModule } from 'primeng/sidebar';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [InvoiceListComponent, OptionsComponent, InvoiceFormComponent],
+  imports: [
+    InvoiceListComponent,
+    OptionsComponent,
+    InvoiceFormComponent,
+    ButtonModule,
+    SidebarModule,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.sass',
 })
 export class HomeComponent {
+  sidebarVisible: boolean = false;
   filters$: Observable<{ paid: boolean; pending: boolean; draft: boolean }>;
 
   constructor(private store: Store<AppState>) {
