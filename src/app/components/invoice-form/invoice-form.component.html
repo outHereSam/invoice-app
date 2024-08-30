@@ -1,5 +1,6 @@
+<div class="overlay"></div>
 <div class="invoice-form">
-  <button>
+  <button class="navigate">
     <img src="../../../assets/images/icon-arrow-left.svg" alt="Left Icon" />
     Go Back
   </button>
@@ -18,19 +19,25 @@
           <label for="senderStreet">Street Address</label>
           <input id="senderStreet" type="text" formControlName="street" />
         </div>
-        <div class="small">
-          <div>
-            <label for="senderCity">City</label>
-            <input id="senderCity" type="text" formControlName="city" />
+        <div class="location">
+          <div class="small">
+            <div>
+              <label for="senderCity">City</label>
+              <input id="senderCity" type="text" formControlName="city" />
+            </div>
+            <div>
+              <label for="senderPostCode">Post Code</label>
+              <input
+                id="senderPostCode"
+                type="text"
+                formControlName="postCode"
+              />
+            </div>
           </div>
           <div>
-            <label for="senderPostCode">Post Code</label>
-            <input id="senderPostCode" type="text" formControlName="postCode" />
+            <label for="senderCountry">Country</label>
+            <input id="senderCountry" type="text" formControlName="country" />
           </div>
-        </div>
-        <div>
-          <label for="senderCountry">Country</label>
-          <input id="senderCountry" type="text" formControlName="country" />
         </div>
       </div>
     </div>
