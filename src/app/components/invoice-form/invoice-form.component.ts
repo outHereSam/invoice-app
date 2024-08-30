@@ -18,21 +18,12 @@ import { CommonModule } from '@angular/common';
 import { Invoice } from '../../interfaces/invoice';
 import { Observable } from 'rxjs';
 import { selectInvoiceById } from '../../state/invoices/invoices.selectors';
-import { SidebarModule } from 'primeng/sidebar';
-import { ButtonModule } from 'primeng/button';
 import { RouterLink } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
 @Component({
   selector: 'app-invoice-form',
   standalone: true,
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    SidebarModule,
-    ButtonModule,
-    RouterLink,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
   templateUrl: './invoice-form.component.html',
   styleUrl: './invoice-form.component.sass',
 })
