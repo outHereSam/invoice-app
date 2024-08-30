@@ -54,11 +54,11 @@
       <div class="items">
         @for(item of invoice.items; track $index) {
         <div class="item">
-          <div>
+          <div class="left">
             <p class="item-name">{{ item.name }}</p>
             <div class="sub-total">
-              <p class="quantity">{{ item.quantity }} x</p>
-              <p class="price">
+              <p class="quantity">
+                {{ item.quantity }} x
                 {{ item.price | currency : "GBP" : "symbol" : "1.2-2" }}
               </p>
             </div>
@@ -84,7 +84,7 @@
     </div>
 
     <div class="amount-due">
-      <p>Amount Due</p>
+      <p>Grand Total</p>
       <h1>
         {{ invoice.total | currency : "GBP" : "symbol" : "1.2-2" }}
       </h1>

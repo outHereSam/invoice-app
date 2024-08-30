@@ -35,7 +35,7 @@ $status-draft-bg-dark: #292C44
     padding: 0
     box-sizing: border-box
 
-body, button
+body, input, button
     font-family: "League Spartan", sans-serif
 
 body
@@ -49,6 +49,9 @@ body
 [data-theme="light"]
     $background-color: $bg-white
     $text-primary: $clr-blueGray-400
+
+    input
+        color: $clr-gray-1000
 
     body 
         background-color: $background-color
@@ -147,6 +150,9 @@ body
 
     body
         background-color: $background-color
+        color: $text-primary
+
+    input
         color: $text-primary
 
     button

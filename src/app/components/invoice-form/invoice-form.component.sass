@@ -95,6 +95,34 @@
                 .small
                     margin: 24px 0
 
+        .date-terms
+            display: flex
+            flex-direction: column
+            gap: 24px
+            margin: 0 0 24px 0
+
+            .payment-terms
+                display: flex
+                align-items: center
+                gap: 16px
+
+                img
+                    margin: -40px
+
+            input
+                width: 100%
+
+            select
+                width: 100%
+                padding: 17px 20px
+                appearance: none
+                border: solid 1px $clr-gray-100
+                border-radius: 4px
+                outline: none
+
+                &:focus-visible
+                    outline: 1px solid $clr-purple-accent
+
         .item-smalls
             // border: solid 1px pink
             display: flex

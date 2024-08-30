@@ -4,7 +4,7 @@
   (click)="modalService.closeModal()"
 ></div>
 <div class="invoice-form">
-  <button class="navigate">
+  <button class="navigate" (click)="modalService.closeModal()">
     <img src="../../../assets/images/icon-arrow-left.svg" alt="Left Icon" />
     Go Back
   </button>
@@ -75,28 +75,36 @@
           </div>
         </div>
         <div>
-          <label for="clientCountry">Country:</label>
+          <label for="clientCountry">Country</label>
           <input id="clientCountry" type="text" formControlName="country" />
         </div>
       </div>
     </div>
 
-    <div>
-      <label for="createdAt">Invoice Date:</label>
-      <input id="createdAt" type="date" formControlName="createdAt" />
-    </div>
+    <div class="date-terms">
+      <div>
+        <label for="createdAt">Invoice Date</label>
+        <input id="createdAt" type="date" formControlName="createdAt" />
+      </div>
 
-    <div>
-      <label for="paymentTerms">Payment Terms:</label>
-      <select id="paymentTerms" formControlName="paymentTerms">
-        <option value="">Select payment terms</option>
-        <option
-          *ngFor="let option of paymentTermsOptions"
-          [value]="option.value"
-        >
-          {{ option.label }}
-        </option>
-      </select>
+      <div>
+        <label for="paymentTerms">Payment Terms</label>
+        <div class="payment-terms">
+          <select id="paymentTerms" formControlName="paymentTerms">
+            <option value="" disabled selected>Select payment terms</option>
+            <option
+              *ngFor="let option of paymentTermsOptions"
+              [value]="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </select>
+          <img
+            src="../../../assets/images/icon-arrow-down.svg"
+            alt="Arrow down"
+          />
+        </div>
+      </div>
     </div>
 
     <div>
