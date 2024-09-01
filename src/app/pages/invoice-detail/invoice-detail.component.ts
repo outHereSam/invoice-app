@@ -15,6 +15,12 @@ import { RouterLink } from '@angular/router';
 import { TitleCasePipe } from '@angular/common';
 import { InvoiceComponent } from '../../components/invoice/invoice.component';
 import { ModalService } from '../../services/modal.service';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ToastModule } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationModalComponent } from '../../components/confirmation-modal/confirmation-modal.component';
+import { ConfirmationModalService } from '../../services/confirmation-modal.service';
 
 @Component({
   selector: 'app-invoice-detail',
@@ -25,25 +31,62 @@ import { ModalService } from '../../services/modal.service';
     RouterLink,
     TitleCasePipe,
     InvoiceComponent,
+    ConfirmDialogModule,
+    ToastModule,
+    ButtonModule,
+    ConfirmationModalComponent,
   ],
   templateUrl: './invoice-detail.component.html',
   styleUrl: './invoice-detail.component.sass',
+  providers: [ConfirmationService, MessageService],
 })
 export class InvoiceDetailComponent {
   invoice$: Observable<Invoice | undefined>;
+  invoiceId: string | null = '';
 
   constructor(
     private store: Store<AppState>,
     private route: ActivatedRoute,
     private router: Router,
-    protected modalService: ModalService
+    protected modalService: ModalService,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
+    protected confirmModalService: ConfirmationModalService
   ) {
     this.invoice$ = this.route.paramMap.pipe(
       switchMap((params) => {
-        const invoiceId = params.get('invoiceId');
-        return this.store.select(selectInvoiceById(invoiceId || ''));
+        this.invoiceId = params.get('invoiceId');
+        return this.store.select(selectInvoiceById(this.invoiceId || ''));
       })
     );
+  }
+
+  confirm2(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: `Are you sure you want to delete invoice #${this.invoiceId}? This action cannot be undone.`,
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+
+      accept: () => {
+        this.messageService.add({
+          severity: 'info',
+          summary: 'Confirmed',
+          detail: 'Record deleted',
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Rejected',
+          detail: 'You have rejected',
+        });
+      },
+    });
   }
 
   markAsPaid(id: string) {
@@ -54,10 +97,5 @@ export class InvoiceDetailComponent {
     this.store.dispatch(
       updateInvoice({ invoice: { id: id, status: 'pending' } })
     );
-  }
-
-  deleteInvoice(id: string) {
-    this.store.dispatch(deleteInvoice({ id }));
-    this.router.navigate(['']);
   }
 }

@@ -20,16 +20,26 @@ import { Observable } from 'rxjs';
 import { selectInvoiceById } from '../../state/invoices/invoices.selectors';
 import { RouterLink } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 @Component({
   selector: 'app-invoice-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    DropdownModule,
+    CalendarModule,
+  ],
   templateUrl: './invoice-form.component.html',
   styleUrl: './invoice-form.component.sass',
 })
 export class InvoiceFormComponent {
   sidebarVisible: boolean = false;
   invoiceForm: FormGroup;
+  formSubmitted: boolean = false;
 
   @Input() invoice: Invoice | null = null;
 
@@ -58,39 +68,102 @@ export class InvoiceFormComponent {
   initForm() {
     this.invoiceForm = this.fb.group({
       senderAddress: this.fb.group({
-        street: [this.invoice?.senderAddress.street || '', Validators.required],
-        city: [this.invoice?.senderAddress.city || '', Validators.required],
+        street: [
+          this.invoice?.senderAddress.street || '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(100),
+          ], // Street should be reasonable length
+        ],
+        city: [
+          this.invoice?.senderAddress.city || '',
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(50),
+          ], // City length validation
+        ],
         postCode: [
           this.invoice?.senderAddress.postCode || '',
-          Validators.required,
+          [
+            Validators.required,
+            // Validators.pattern(/^[A-Z0-9]+$/),
+            Validators.minLength(3),
+            Validators.maxLength(10),
+          ], // Postcode length and pattern
         ],
         country: [
           this.invoice?.senderAddress.country || '',
-          Validators.required,
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(50),
+          ], // Country should be reasonable length
         ],
       }),
-      clientName: [this.invoice?.clientName || '', Validators.required],
+      clientName: [
+        this.invoice?.clientName || '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(100),
+        ], // Name length validation
+      ],
       clientEmail: [
         this.invoice?.clientEmail || '',
         [Validators.required, Validators.email],
       ],
       clientAddress: this.fb.group({
-        street: [this.invoice?.clientAddress.street || '', Validators.required],
-        city: [this.invoice?.clientAddress.city || '', Validators.required],
+        street: [
+          this.invoice?.clientAddress.street || '',
+          [
+            Validators.required,
+            Validators.minLength(3),
+            Validators.maxLength(100),
+          ], // Street should be reasonable length
+        ],
+        city: [
+          this.invoice?.clientAddress.city || '',
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(50),
+          ], // City length validation
+        ],
         postCode: [
           this.invoice?.clientAddress.postCode || '',
-          Validators.required,
+          [
+            Validators.required,
+            Validators.pattern(/^[A-Z0-9]+$/),
+            Validators.minLength(3),
+            Validators.maxLength(10),
+          ], // Postcode length and pattern
         ],
         country: [
           this.invoice?.clientAddress.country || '',
-          Validators.required,
+          [
+            Validators.required,
+            Validators.minLength(2),
+            Validators.maxLength(50),
+          ], // Country should be reasonable length
         ],
       }),
-      createdAt: [this.invoice?.createdAt || '', Validators.required],
-      paymentTerms: [this.invoice?.paymentTerms || '', Validators.required],
-      description: [this.invoice?.description || '', Validators.required],
+      createdAt: [
+        this.invoice?.createdAt || '',
+        [Validators.required], // Custom date format validation can be added
+      ],
+      paymentTerms: [
+        this.invoice?.paymentTerms || '',
+        [Validators.required, Validators.min(1)], // Positive payment terms
+      ],
+      description: [
+        this.invoice?.description || '',
+        [Validators.required, Validators.maxLength(255)], // Description length limit
+      ],
       items: this.fb.array(
-        this.invoice?.items.map((item) => this.createItemFormGroup(item)) || []
+        this.invoice?.items.map((item) => this.createItemFormGroup(item)) || [],
+        Validators.minLength(1) // At least one item
       ),
     });
 
@@ -157,14 +230,93 @@ export class InvoiceFormComponent {
     };
 
     this.store.dispatch(addInvoice({ invoice: draftInvoice }));
+    this.modalService.closeModal();
+  }
+
+  markFormGroupTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach((control) => {
+      control.markAsTouched();
+
+      if (control instanceof FormGroup) {
+        this.markFormGroupTouched(control);
+      }
+    });
+  }
+
+  getNestedControl(controlName: string): any {
+    const parts = controlName.split('.');
+    let control: any = this.invoiceForm;
+
+    for (const part of parts) {
+      control = control.get(part);
+      if (!control) break;
+    }
+
+    return control;
+  }
+
+  shouldShowError(controlName: string): boolean {
+    const control = this.getNestedControl(controlName);
+    return (
+      (control?.invalid && (control?.touched || this.formSubmitted)) ?? false
+    );
+  }
+
+  getErrorMessages(controlName: string): string[] {
+    const control = this.getNestedControl(controlName);
+    if (!control || !control.errors) return [];
+
+    const errors: string[] = [];
+    const errorKeys = Object.keys(control.errors);
+
+    if (errorKeys.includes('required')) {
+      errors.push('This field is required');
+    }
+
+    if (errorKeys.includes('minlength')) {
+      const requiredLength = control.errors['minlength'].requiredLength;
+      errors.push(`Minimum length is ${requiredLength} characters`);
+    }
+
+    if (errorKeys.includes('maxlength')) {
+      const requiredLength = control.errors['maxlength'].requiredLength;
+      errors.push(`Maximum length is ${requiredLength} characters`);
+    }
+
+    if (errorKeys.includes('email')) {
+      errors.push('Please enter a valid email address');
+    }
+
+    if (errorKeys.includes('pattern')) {
+      if (controlName.includes('postCode')) {
+        errors.push(
+          'Post code must contain only uppercase letters and numbers'
+        );
+      } else {
+        errors.push('Invalid format');
+      }
+    }
+
+    if (errorKeys.includes('min')) {
+      const min = control.errors['min'].min;
+      errors.push(`Minimum value is ${min}`);
+    }
+
+    // Additional error types
+    if (controlName === 'items' && errorKeys.includes('minlength')) {
+      errors.push('At least one item is required');
+    }
+
+    return errors;
   }
 
   onSubmit() {
+    this.formSubmitted = true;
     if (this.invoiceForm.valid) {
       const formValue = this.invoiceForm.value;
       const createdAt = new Date(formValue.createdAt);
       const paymentDue = new Date(createdAt);
-      paymentDue.setDate(paymentDue.getDate() + formValue.paymentTerms);
+      paymentDue.setDate(paymentDue.getDate() + Number(formValue.paymentTerms));
 
       const newInvoice = {
         ...formValue,
@@ -194,9 +346,21 @@ export class InvoiceFormComponent {
         this.store.dispatch(
           updateInvoice({ invoice: { id: this.invoice.id, ...newInvoice } })
         );
+        this.modalService.closeModal();
       } else {
         this.store.dispatch(addInvoice({ invoice: newInvoice }));
+        this.modalService.closeModal();
       }
+    } else {
+      this.markFormGroupTouched(this.invoiceForm);
     }
+  }
+
+  discardChanges() {
+    this.invoiceForm.reset();
+
+    this.invoiceForm.markAsPristine();
+    this.invoiceForm.markAsUntouched();
+    this.modalService.closeModal();
   }
 }

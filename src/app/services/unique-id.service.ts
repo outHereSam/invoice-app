@@ -17,7 +17,7 @@ export class UniqueIdService {
         Math.floor(Math.random() * 10)
       ).join('');
 
-      id = `#${letters}${digits}`;
+      id = `${letters}${digits}`;
     } while (this.usedIds.has(id));
 
     this.usedIds.add(id);

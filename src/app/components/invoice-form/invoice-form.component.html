@@ -21,17 +21,28 @@
       <div class="form-group">
         <div>
           <label for="senderStreet">Street Address</label>
-          <input id="senderStreet" type="text" formControlName="street" />
+          <input
+            [class.is-invalid]="shouldShowError('senderAddress.street')"
+            id="senderStreet"
+            type="text"
+            formControlName="street"
+          />
         </div>
         <div class="location">
           <div class="small">
             <div>
               <label for="senderCity">City</label>
-              <input id="senderCity" type="text" formControlName="city" />
+              <input
+                [class.is-invalid]="shouldShowError('senderAddress.city')"
+                id="senderCity"
+                type="text"
+                formControlName="city"
+              />
             </div>
             <div>
               <label for="senderPostCode">Post Code</label>
               <input
+                [class.is-invalid]="shouldShowError('senderAddress.postCode')"
                 id="senderPostCode"
                 type="text"
                 formControlName="postCode"
@@ -40,7 +51,12 @@
           </div>
           <div>
             <label for="senderCountry">Country</label>
-            <input id="senderCountry" type="text" formControlName="country" />
+            <input
+              [class.is-invalid]="shouldShowError('senderAddress.country')"
+              id="senderCountry"
+              type="text"
+              formControlName="country"
+            />
           </div>
         </div>
       </div>
@@ -51,32 +67,62 @@
     <div class="form-group">
       <div>
         <label for="clientName">Client Name</label>
-        <input id="clientName" type="text" formControlName="clientName" />
+        <input
+          [class.is-invalid]="shouldShowError('clientName')"
+          id="clientName"
+          type="text"
+          formControlName="clientName"
+        />
       </div>
 
       <div>
         <label for="clientEmail">Client Email</label>
-        <input id="clientEmail" type="email" formControlName="clientEmail" />
+        <input
+          [class.is-invalid]="shouldShowError('clientEmail')"
+          id="clientEmail"
+          type="email"
+          formControlName="clientEmail"
+        />
       </div>
 
       <div formGroupName="clientAddress" class="client">
         <div>
           <label for="clientStreet">Street Address</label>
-          <input id="clientStreet" type="text" formControlName="street" />
+          <input
+            [class.is-invalid]="shouldShowError('clientAddress.street')"
+            id="clientStreet"
+            type="text"
+            formControlName="street"
+          />
         </div>
         <div class="small">
           <div>
             <label for="clientCity">City</label>
-            <input id="clientCity" type="text" formControlName="city" />
+            <input
+              [class.is-invalid]="shouldShowError('clientAddress.city')"
+              id="clientCity"
+              type="text"
+              formControlName="city"
+            />
           </div>
           <div>
             <label for="clientPostCode">Post Code</label>
-            <input id="clientPostCode" type="text" formControlName="postCode" />
+            <input
+              [class.is-invalid]="shouldShowError('clientAddress.postCode')"
+              id="clientPostCode"
+              type="text"
+              formControlName="postCode"
+            />
           </div>
         </div>
         <div>
           <label for="clientCountry">Country</label>
-          <input id="clientCountry" type="text" formControlName="country" />
+          <input
+            [class.is-invalid]="shouldShowError('clientAddress.country')"
+            id="clientCountry"
+            type="text"
+            formControlName="country"
+          />
         </div>
       </div>
     </div>
@@ -109,7 +155,12 @@
 
     <div>
       <label for="description">Description:</label>
-      <input id="description" type="text" formControlName="description" />
+      <input
+        [class.is-invalid]="shouldShowError('description')"
+        id="description"
+        type="text"
+        formControlName="description"
+      />
     </div>
 
     <h3 class="title">Item List</h3>
@@ -167,12 +218,16 @@
 
     <div class="buttons">
       @if (!invoice) {
-      <button class="discard">Discard</button>
-      }
+      <button class="discard" (click)="discardChanges()">Discard</button>
       <button class="save-draft" type="button" (click)="saveAsDraft()">
         Save as Draft
       </button>
-      <button class="save" type="submit" [disabled]="!invoiceForm.valid">
+      } @if (invoice) {
+      <button class="discard" (click)="modalService.closeModal()">
+        Cancel
+      </button>
+      }
+      <button class="save" type="submit">
         {{ invoice ? "Save Changes" : "Save & Send" }}
       </button>
     </div>

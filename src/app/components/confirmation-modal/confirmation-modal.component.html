@@ -1,0 +1,21 @@
+<div
+  class="overlay"
+  [style]="{ display: confirmationModalService.isOpened ? 'block' : 'none' }"
+  (click)="confirmationModalService.closeModal()"
+></div>
+
+<div class="confirm-modal">
+  <h1>Confirm Deletion</h1>
+
+  <p>
+    Are you sure you want to delete invoice #{{ invoiceId }}? This action cannot
+    be undone.
+  </p>
+
+  <div class="btns">
+    <button class="cancel" (click)="confirmationModalService.closeModal()">
+      Cancel
+    </button>
+    <button class="delete" (click)="deleteInvoice()">Delete</button>
+  </div>
+</div>

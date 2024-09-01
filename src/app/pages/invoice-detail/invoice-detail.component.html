@@ -11,6 +11,10 @@
 <app-invoice-form [invoice]="invoice" />
 } -->
 
+<app-confirmation-modal
+  [invoiceId]="invoiceId"
+  [style]="{ display: confirmModalService.isOpened ? 'block' : 'none' }"
+/>
 <div class="container">
   <button [routerLink]="['/']">
     <img src="../../../assets/images/icon-arrow-left.svg" alt="Left Icon" />
@@ -29,7 +33,9 @@
     <div class="crud-btns">
       @if (invoice$ | async; as invoice) {
       <button class="edit-btn" (click)="modalService.openModal()">Edit</button>
-      <button class="delete" (click)="deleteInvoice(invoice.id)">Delete</button>
+      <button class="delete" (click)="confirmModalService.openModal()">
+        Delete
+      </button>
       @if (invoice.status !== 'paid') {
       <button class="markAsPaid" (click)="markAsPaid(invoice.id)">
         Mark as Paid
