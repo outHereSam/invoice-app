@@ -20,10 +20,19 @@ import { Observable } from 'rxjs';
 import { selectInvoiceById } from '../../state/invoices/invoices.selectors';
 import { RouterLink } from '@angular/router';
 import { ModalService } from '../../services/modal.service';
+import { DropdownModule } from 'primeng/dropdown';
+import { CalendarModule } from 'primeng/calendar';
 @Component({
   selector: 'app-invoice-form',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterLink,
+    DropdownModule,
+    CalendarModule,
+  ],
   templateUrl: './invoice-form.component.html',
   styleUrl: './invoice-form.component.sass',
 })
