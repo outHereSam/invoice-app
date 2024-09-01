@@ -27,6 +27,12 @@
             type="text"
             formControlName="street"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('senderAddress.street')"
+          >
+            {{ getErrorMessages("senderAddress.street") }}
+          </div>
         </div>
         <div class="location">
           <div class="small">
@@ -38,6 +44,12 @@
                 type="text"
                 formControlName="city"
               />
+              <div
+                class="invalid-feedback"
+                *ngIf="isFieldInvalid('senderAddress.city')"
+              >
+                {{ getErrorMessages("senderAddress.city") }}
+              </div>
             </div>
             <div>
               <label for="senderPostCode">Post Code</label>
@@ -47,6 +59,12 @@
                 type="text"
                 formControlName="postCode"
               />
+              <div
+                class="invalid-feedback"
+                *ngIf="isFieldInvalid('senderAddress.postCode')"
+              >
+                {{ getErrorMessages("senderAddress.postCode") }}
+              </div>
             </div>
           </div>
           <div>
@@ -57,6 +75,12 @@
               type="text"
               formControlName="country"
             />
+            <div
+              class="invalid-feedback"
+              *ngIf="isFieldInvalid('senderAddress.country')"
+            >
+              {{ getErrorMessages("senderAddress.country") }}
+            </div>
           </div>
         </div>
       </div>
@@ -73,6 +97,9 @@
           type="text"
           formControlName="clientName"
         />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('clientName')">
+          {{ getErrorMessages("clientName") }}
+        </div>
       </div>
 
       <div>
@@ -83,6 +110,9 @@
           type="email"
           formControlName="clientEmail"
         />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('clientEmail')">
+          {{ getErrorMessages("clientEmail") }}
+        </div>
       </div>
 
       <div formGroupName="clientAddress" class="client">
@@ -94,6 +124,12 @@
             type="text"
             formControlName="street"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('clientAddress.street')"
+          >
+            {{ getErrorMessages("clientAddress.street") }}
+          </div>
         </div>
         <div class="small">
           <div>
@@ -104,6 +140,12 @@
               type="text"
               formControlName="city"
             />
+            <div
+              class="invalid-feedback"
+              *ngIf="isFieldInvalid('clientAddress.city')"
+            >
+              {{ getErrorMessages("clientAddress.city") }}
+            </div>
           </div>
           <div>
             <label for="clientPostCode">Post Code</label>
@@ -113,6 +155,12 @@
               type="text"
               formControlName="postCode"
             />
+            <div
+              class="invalid-feedback"
+              *ngIf="isFieldInvalid('clientAddress.postCode')"
+            >
+              {{ getErrorMessages("clientAddress.postCode") }}
+            </div>
           </div>
         </div>
         <div>
@@ -123,6 +171,12 @@
             type="text"
             formControlName="country"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('clientAddress.country')"
+          >
+            {{ getErrorMessages("clientAddress.country") }}
+          </div>
         </div>
       </div>
     </div>
@@ -131,6 +185,9 @@
       <div>
         <label for="createdAt">Invoice Date</label>
         <input id="createdAt" type="date" formControlName="createdAt" />
+        <div class="invalid-feedback" *ngIf="isFieldInvalid('createdAt')">
+          {{ getErrorMessages("createdAt") }}
+        </div>
       </div>
 
       <div>
@@ -161,6 +218,9 @@
         type="text"
         formControlName="description"
       />
+      <div class="invalid-feedback" *ngIf="isFieldInvalid('description')">
+        {{ getErrorMessages("description") }}
+      </div>
     </div>
 
     <h3 class="title">Item List</h3>
@@ -171,7 +231,18 @@
       >
         <div>
           <label [for]="'itemName' + i">Item Name</label>
-          <input [id]="'itemName' + i" type="text" formControlName="name" />
+          <input
+            [class.is-invalid]="shouldShowError('items.' + i + '.name')"
+            [id]="'itemName' + i"
+            type="text"
+            formControlName="name"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="isFieldInvalid('items.' + i + '.name')"
+          >
+            {{ getErrorMessages("items." + i + ".name") }}
+          </div>
         </div>
         <div class="item-smalls">
           <div>
