@@ -95,7 +95,7 @@ export class InvoiceFormComponent {
     });
 
     if (!this.invoice) {
-      // don't add a new item by default when edititing
+      // don't add a new item by default when editing
       this.addItem();
     }
   }
