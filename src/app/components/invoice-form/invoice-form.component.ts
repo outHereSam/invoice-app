@@ -270,7 +270,7 @@ export class InvoiceFormComponent {
     const errorKeys = Object.keys(control.errors);
 
     if (errorKeys.includes('required')) {
-      errors.push('This field is required');
+      errors.push("can't be empty");
     }
 
     if (errorKeys.includes('minlength')) {
@@ -308,6 +308,13 @@ export class InvoiceFormComponent {
     }
 
     return errors;
+  }
+
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.invoiceForm.get(fieldName);
+    return (
+      control !== null && control.invalid && (control.dirty || control.touched)
+    );
   }
 
   onSubmit() {
