@@ -218,12 +218,16 @@
 
     <div class="buttons">
       @if (!invoice) {
-      <button class="discard">Discard</button>
-      }
+      <button class="discard" (click)="discardChanges()">Discard</button>
       <button class="save-draft" type="button" (click)="saveAsDraft()">
         Save as Draft
       </button>
-      <button class="save" type="submit" [disabled]="!invoiceForm.valid">
+      } @if (invoice) {
+      <button class="discard" (click)="modalService.closeModal()">
+        Cancel
+      </button>
+      }
+      <button class="save" type="submit">
         {{ invoice ? "Save Changes" : "Save & Send" }}
       </button>
     </div>

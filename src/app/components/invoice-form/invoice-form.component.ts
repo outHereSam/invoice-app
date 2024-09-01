@@ -79,7 +79,7 @@ export class InvoiceFormComponent {
           this.invoice?.senderAddress.postCode || '',
           [
             Validators.required,
-            Validators.pattern(/^[A-Z0-9]+$/),
+            // Validators.pattern(/^[A-Z0-9]+$/),
             Validators.minLength(3),
             Validators.maxLength(10),
           ], // Postcode length and pattern
@@ -307,7 +307,7 @@ export class InvoiceFormComponent {
       const formValue = this.invoiceForm.value;
       const createdAt = new Date(formValue.createdAt);
       const paymentDue = new Date(createdAt);
-      paymentDue.setDate(paymentDue.getDate() + formValue.paymentTerms);
+      paymentDue.setDate(paymentDue.getDate() + Number(formValue.paymentTerms));
 
       const newInvoice = {
         ...formValue,
@@ -345,5 +345,13 @@ export class InvoiceFormComponent {
     } else {
       this.markFormGroupTouched(this.invoiceForm);
     }
+  }
+
+  discardChanges() {
+    this.invoiceForm.reset();
+
+    this.invoiceForm.markAsPristine();
+    this.invoiceForm.markAsUntouched();
+    this.modalService.closeModal();
   }
 }
