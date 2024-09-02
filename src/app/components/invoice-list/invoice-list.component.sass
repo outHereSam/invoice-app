@@ -1,3 +1,5 @@
+@import '../../../styles'
+
 .filtered-invoices
     max-width: 672px
     margin: 0 auto
@@ -14,6 +16,9 @@ app-invoice-form
     left: 0
     bottom: 0
     z-index: 5
+
+    &:hover
+        border: solid 1px $clr-purple-accent
 
     @media (min-width: 1024px)
         // left: 104px
