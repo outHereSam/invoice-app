@@ -211,7 +211,12 @@ export class InvoiceFormComponent {
 
   saveAsDraft() {
     const formValue = this.invoiceForm.value;
+    const clientName = this.invoiceForm.get('clientName');
 
+    if (clientName?.invalid) {
+      clientName.markAsTouched();
+      return;
+    }
     const draftInvoice = {
       ...formValue,
       id: this.invoice ? this.invoice.id : this.generatedId.generateUniqueId(),
@@ -321,6 +326,7 @@ export class InvoiceFormComponent {
     this.formSubmitted = true;
     if (this.invoiceForm.invalid) {
       this.markFormGroupTouched(this.invoiceForm);
+      return;
     }
     if (this.invoiceForm.valid) {
       const formValue = this.invoiceForm.value;
@@ -368,9 +374,8 @@ export class InvoiceFormComponent {
 
   discardChanges() {
     this.invoiceForm.reset();
-
     this.invoiceForm.markAsPristine();
-    this.invoiceForm.markAsUntouched();
-    this.modalService.closeModal();
+    // this.invoiceForm.markAsUntouched();
+    // this.modalService.closeModal();
   }
 }

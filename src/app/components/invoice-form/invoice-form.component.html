@@ -22,7 +22,7 @@
         <div>
           <label for="senderStreet">Street Address</label>
           <input
-            [class.is-invalid]="shouldShowError('senderAddress.street')"
+            [class.is-invalid]="isFieldInvalid('senderAddress.street')"
             id="senderStreet"
             type="text"
             formControlName="street"
@@ -39,7 +39,7 @@
             <div>
               <label for="senderCity">City</label>
               <input
-                [class.is-invalid]="shouldShowError('senderAddress.city')"
+                [class.is-invalid]="isFieldInvalid('senderAddress.city')"
                 id="senderCity"
                 type="text"
                 formControlName="city"
@@ -54,7 +54,7 @@
             <div>
               <label for="senderPostCode">Post Code</label>
               <input
-                [class.is-invalid]="shouldShowError('senderAddress.postCode')"
+                [class.is-invalid]="isFieldInvalid('senderAddress.postCode')"
                 id="senderPostCode"
                 type="text"
                 formControlName="postCode"
@@ -70,7 +70,7 @@
           <div>
             <label for="senderCountry">Country</label>
             <input
-              [class.is-invalid]="shouldShowError('senderAddress.country')"
+              [class.is-invalid]="isFieldInvalid('senderAddress.country')"
               id="senderCountry"
               type="text"
               formControlName="country"
@@ -92,7 +92,7 @@
       <div>
         <label for="clientName">Client Name</label>
         <input
-          [class.is-invalid]="shouldShowError('clientName')"
+          [class.is-invalid]="isFieldInvalid('clientName')"
           id="clientName"
           type="text"
           formControlName="clientName"
@@ -105,7 +105,7 @@
       <div>
         <label for="clientEmail">Client Email</label>
         <input
-          [class.is-invalid]="shouldShowError('clientEmail')"
+          [class.is-invalid]="isFieldInvalid('clientEmail')"
           id="clientEmail"
           type="email"
           formControlName="clientEmail"
@@ -119,7 +119,7 @@
         <div>
           <label for="clientStreet">Street Address</label>
           <input
-            [class.is-invalid]="shouldShowError('clientAddress.street')"
+            [class.is-invalid]="isFieldInvalid('clientAddress.street')"
             id="clientStreet"
             type="text"
             formControlName="street"
@@ -135,7 +135,7 @@
           <div>
             <label for="clientCity">City</label>
             <input
-              [class.is-invalid]="shouldShowError('clientAddress.city')"
+              [class.is-invalid]="isFieldInvalid('clientAddress.city')"
               id="clientCity"
               type="text"
               formControlName="city"
@@ -150,7 +150,7 @@
           <div>
             <label for="clientPostCode">Post Code</label>
             <input
-              [class.is-invalid]="shouldShowError('clientAddress.postCode')"
+              [class.is-invalid]="isFieldInvalid('clientAddress.postCode')"
               id="clientPostCode"
               type="text"
               formControlName="postCode"
@@ -166,7 +166,7 @@
         <div>
           <label for="clientCountry">Country</label>
           <input
-            [class.is-invalid]="shouldShowError('clientAddress.country')"
+            [class.is-invalid]="isFieldInvalid('clientAddress.country')"
             id="clientCountry"
             type="text"
             formControlName="country"
@@ -213,7 +213,7 @@
     <div>
       <label for="description">Description:</label>
       <input
-        [class.is-invalid]="shouldShowError('description')"
+        [class.is-invalid]="isFieldInvalid('description')"
         id="description"
         type="text"
         formControlName="description"
@@ -232,7 +232,7 @@
         <div>
           <label [for]="'itemName' + i">Item Name</label>
           <input
-            [class.is-invalid]="shouldShowError('items.' + i + '.name')"
+            [class.is-invalid]="isFieldInvalid('items.' + i + '.name')"
             [id]="'itemName' + i"
             type="text"
             formControlName="name"
@@ -292,7 +292,9 @@
 
     <div class="buttons">
       @if (!invoice) {
-      <button class="discard" (click)="discardChanges()">Discard</button>
+      <button type="button" class="discard" (click)="discardChanges()">
+        Discard
+      </button>
       <button class="save-draft" type="button" (click)="saveAsDraft()">
         Save as Draft
       </button>
