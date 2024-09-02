@@ -375,7 +375,7 @@ export class InvoiceFormComponent {
   discardChanges() {
     this.invoiceForm.reset();
     this.invoiceForm.markAsPristine();
-    // this.invoiceForm.markAsUntouched();
-    // this.modalService.closeModal();
+    this.invoiceForm.markAsUntouched();
+    this.modalService.closeModal();
   }
 }
