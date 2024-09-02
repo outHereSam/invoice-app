@@ -27,3 +27,5 @@ export const updateFilters = createAction(
   '[Invoice] Update Filters',
   props<{ filterType: string; filterValue: boolean }>()
 );
+
+export const addInvoiceSuccess = createAction('[Invoices] Add Invoice Success');
