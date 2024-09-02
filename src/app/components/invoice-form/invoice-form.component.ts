@@ -319,6 +319,9 @@ export class InvoiceFormComponent {
 
   onSubmit() {
     this.formSubmitted = true;
+    if (this.invoiceForm.invalid) {
+      this.markFormGroupTouched(this.invoiceForm);
+    }
     if (this.invoiceForm.valid) {
       const formValue = this.invoiceForm.value;
       const createdAt = new Date(formValue.createdAt);

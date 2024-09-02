@@ -1,8 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 // primaries
-@import "primeng/resources/themes/lara-light-blue/theme.css"
-@import "primeng/resources/primeng.css"
-
 $clr-purple-accent: #7C5DFA
 $clr-purple-light: #9277FF
 $clr-red-500: #EC5757
@@ -42,6 +39,9 @@ body
     height: 100vh
     transition: 0.2s ease-in-out
 
+    button
+        &:disabled
+            opacity: 0.5
 
 .no-scroll
     overflow: hidden
