@@ -224,27 +224,27 @@
     </div>
 
     <h3 class="title">Item List</h3>
-    <div formArrayName="items">
+    <div formArrayName="items" class="items">
       <div
         *ngFor="let item of items.controls; let i = index"
         [formGroupName]="i"
       >
-        <div>
-          <label [for]="'itemName' + i">Item Name</label>
-          <input
-            [class.is-invalid]="isFieldInvalid('items.' + i + '.name')"
-            [id]="'itemName' + i"
-            type="text"
-            formControlName="name"
-          />
-          <div
-            class="invalid-feedback"
-            *ngIf="isFieldInvalid('items.' + i + '.name')"
-          >
-            {{ getErrorMessages("items." + i + ".name") }}
+        <div class="items-grid">
+          <div>
+            <label [for]="'itemName' + i">Item Name</label>
+            <input
+              [class.is-invalid]="isFieldInvalid('items.' + i + '.name')"
+              [id]="'itemName' + i"
+              type="text"
+              formControlName="name"
+            />
+            <div
+              class="invalid-feedback"
+              *ngIf="isFieldInvalid('items.' + i + '.name')"
+            >
+              {{ getErrorMessages("items." + i + ".name") }}
+            </div>
           </div>
-        </div>
-        <div class="item-smalls">
           <div>
             <label [for]="'itemQuantity' + i">Qty.</label>
             <input
